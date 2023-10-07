@@ -2,103 +2,97 @@ const mongoose = require('mongoose');
 
 
 const orderSchema = mongoose.Schema({
-
     shippingInfo: {
         address: {
             type: String,
-            required: true
+            required: true,
         },
         city: {
             type: String,
-            required: true
+            required: true,
         },
         phoneNo: {
             type: String,
-            required: true
+            required: true,
         },
-        postalCode: {
+        zipCode: {
             type: String,
-            required: true
+            required: true,
         },
         country: {
             type: String,
-            required: true
+            required: true,
         },
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'User'
+        ref: "User",
     },
     orderItems: [
         {
             name: {
                 type: String,
-                required: true
+                required: true,
             },
             quantity: {
                 type: Number,
-                required: true
+                required: true,
             },
             image: {
                 type: String,
-                required: true
+                required: true,
             },
             price: {
-                type: Number,
-                required: true
+                type: String,
+                required: true,
             },
             product: {
                 type: mongoose.Schema.Types.ObjectId,
                 required: true,
-                ref: 'Product'
-            }
-        }
-    ],
-    paymentInfo: {
-        id: {
-            type: String
+                ref: "Product",
+            },
         },
-        status: {
-            type: String
-        }
+    ],
+    paymentMethod: {
+        type: String,
+        required: [true, "Please select payment method"],
+        enum: {
+            values: ["COD", "Card"],
+            message: "Please select: COD or Card",
+        },
     },
-    paidAt: {
-        type: Date
+    paymentInfo: {
+        id: String,
+        status: String,
     },
     itemsPrice: {
         type: Number,
         required: true,
-        default: 0.0
     },
-    taxPrice: {
+    taxAmount: {
         type: Number,
         required: true,
-        default: 0.0
     },
-    shippingPrice: {
+    shippingAmount: {
         type: Number,
         required: true,
-        default: 0.0
     },
-    totalPrice: {
+    totalAmount: {
         type: Number,
         required: true,
-        default: 0.0
     },
     orderStatus: {
         type: String,
-        required: true,
-        default: 'Processing'
+        enum: {
+            values: ["Processing", "Shipped", "Delivered"],
+            message: "Please select correct order status",
+        },
+        default: "Processing",
     },
-    deliveredAt: {
-        type: Date
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
-
-})
+    deliveredAt: Date,
+},
+    { timestamps: true }
+);
 
 module.exports = mongoose.model('Order', orderSchema)

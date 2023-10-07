@@ -37,8 +37,4 @@ router.route('/admin/user/:id').get(isAuthenticatedUser, authorizedRoles('admin'
 
 
 
-
-
-
-
 module.exports = router;
