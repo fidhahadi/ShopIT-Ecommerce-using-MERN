@@ -28,7 +28,7 @@ const ProductItem = ({ product }) => {
                         />
                         <span id="no_of_reviews" className="pt-2 ps-2">
                             {" "}
-                            ({product?.numOfReviews})
+                            ({product?.numOfReviews || 0})
                         </span>
                     </div>
                     <p className="card-text mt-2">${product?.price}</p>
