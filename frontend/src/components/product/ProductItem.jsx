@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import StarRatings from 'react-star-ratings';
 
 const ProductItem = ({ product }) => {
+
     return (
         <div className="col-sm-12 col-md-6 col-lg-3 my-3">
             <div className="card p-3 rounded">
@@ -18,7 +19,7 @@ const ProductItem = ({ product }) => {
                     </h5>
                     <div className="ratings mt-auto d-flex">
                         <StarRatings
-                            rating={product?.rating}
+                            rating={product?.ratings || 0}
                             starRatedColor="#ffb829"
                             numberOfStars={5}
                             name='rating'
