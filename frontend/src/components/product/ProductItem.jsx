@@ -17,14 +17,14 @@ const ProductItem = ({ product }) => {
                         <Link to={`/product/${product?._id}`}>{product?.name}</Link>
                     </h5>
                     <div className="ratings mt-auto d-flex">
-                        {/* <StarRatings
-                            rating={product?.ratings}
+                        <StarRatings
+                            rating={product?.rating}
                             starRatedColor="#ffb829"
                             numberOfStars={5}
-                            name="rating"
+                            name='rating'
                             starDimension="22px"
                             starSpacing="1px"
-                        /> */}
+                        />
                         <span id="no_of_reviews" className="pt-2 ps-2">
                             {" "}
                             ({product?.numOfReviews})
