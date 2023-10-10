@@ -7,19 +7,24 @@ import Header from './components/layouts/Header';
 import Footer from './components/layouts/Footer';
 import Home from './components/Home';
 import { Toaster } from 'react-hot-toast'
+import ProductDetails from './components/product/ProductDetails';
 
 function App() {
   return (
     <Router>
+      <div className="App">
+        <Toaster position="top-center" />
+        <Header />
 
-      <Header />
-      <div className="container container-fluid">
-        <Toaster position='top-center' />
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+          </Routes>
+        </div>
+
+        <Footer />
       </div>
-      <Footer />
     </Router>
   );
 }
