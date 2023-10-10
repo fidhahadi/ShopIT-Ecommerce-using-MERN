@@ -1,17 +1,27 @@
 import React from 'react'
 import { useParams } from 'react-router'
 import { useGetProductDetailsQuery } from '../../api/productsApi'
+import StarRatings from 'react-star-ratings'
+import { useEffect } from 'react'
+import toast from 'react-hot-toast'
+import Loader from '../layouts/Loader'
 
 const ProductDetails = () => {
 
     const params = useParams();
 
 
-    const { data } = useGetProductDetailsQuery(params?.id);
-
-
+    const { data, isError, error, isLoading } = useGetProductDetailsQuery(params?.id);
     const product = data?.product;
     console.log(product);
+
+    useEffect(() => {
+        toast.error(error?.data?.message);
+    }, [isError])
+
+    if (isLoading) return <Loader />
+
+
     return (
         <>
             <div className="row d-flex justify-content-around">
@@ -42,23 +52,24 @@ const ProductDetails = () => {
 
                 <div className="col-12 col-lg-5 mt-5">
                     <h3>{product?.name}</h3>
-                    <p id="product_id">Product # w43453456456756786</p>
+                    <p id="product_id">Product {product?._id}</p>
 
                     <hr />
 
                     <div className="d-flex">
-                        <div className="star-ratings">
-                            <i className="fa fa-star star-active"></i>
-                            <i className="fa fa-star star-active"></i>
-                            <i className="fa fa-star star-active"></i>
-                            <i className="fa fa-star star-active"></i>
-                            <i className="fa fa-star star-active"></i>
-                        </div>
-                        <span id="no-of-reviews" className="pt-1 ps-2"> (1 Reviews) </span>
+                        <StarRatings
+                            rating={product?.ratings || 0}
+                            starRatedColor="#ffb829"
+                            numberOfStars={5}
+                            name='rating'
+                            starDimension="22px"
+                            starSpacing="1px"
+                        />
+                        <span id="no-of-reviews" className="pt-1 ps-2"> ({product?.numberOfReviews}) </span>
                     </div>
                     <hr />
 
-                    <p id="product_price">$23</p>
+                    <p id="product_price">${product?.price}</p>
                     <div className="stockCounter d-inline">
                         <span className="btn btn-danger minus">-</span>
                         <input
@@ -81,25 +92,16 @@ const ProductDetails = () => {
                     <hr />
 
                     <p>
-                        Status: <span id="stock_status" className="greenColor">In Stock</span>
+                        Status: <span id="stock_status" className="greenColor">{product?.stock > 0 ? `In Stock` : `Out of Stock`}</span>
                     </p>
 
                     <hr />
 
                     <h4 className="mt-2">Description:</h4>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text ever
-                        since the 1500s, when an unknown printer took a galley of type and
-                        scrambled it to make a type specimen book. It has survived not only
-                        five centuries, but also the leap into electronic typesetting,
-                        remaining essentially unchanged. It was popularised in the 1960s with
-                        the release of Letraset sheets containing Lorem Ipsum passages, and
-                        more recently with desktop publishing software like Aldus PageMaker
-                        including versions of Lorem Ipsum.
+                    <p>{product?.description}
                     </p>
                     <hr />
-                    <p id="product_seller mb-3">Sold by: <strong>Tech</strong></p>
+                    <p id="product_seller mb-3">Sold by: <strong>{product?.seller}</strong></p>
 
                     <div className="alert alert-danger my-5" type="alert">
                         Login to post your review.
