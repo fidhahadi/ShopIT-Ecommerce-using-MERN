@@ -9,6 +9,7 @@ import Home from './components/Home';
 import { Toaster } from 'react-hot-toast'
 import ProductDetails from './components/product/ProductDetails';
 
+
 function App() {
   return (
     <Router>
