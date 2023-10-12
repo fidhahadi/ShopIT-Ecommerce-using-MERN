@@ -7,7 +7,16 @@
         "images" : [{
             "public_id" : "shopIT/sd1_gqxiza",
             "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112808/shopIT/sd1_gqxiza.jpg"
-        }],
+        },
+        {
+            "public_id" : "shopIT/sd3_r0alhn",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112814/shopIT/sd3_r0alhn.jpg"
+        },
+        {
+            "public_id" : "shopIT/sd2_xrdlxs",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112813/shopIT/sd2_xrdlxs.jpg"
+        }
+    ],
         "category" : "Electronics",
         "seller" : "Ebay",
         "stock" : 50,
@@ -22,7 +31,16 @@
         "images" : [{
             "public_id" : "shopIT/ad1_wwmnxk",
             "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112807/shopIT/ad1_wwmnxk.jpg"
-        }],
+        },
+        {
+            "public_id" : "shopIT/ad2_lcvw1w",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112808/shopIT/ad2_lcvw1w.jpg"
+        },
+        {
+            "public_id" : "shopIT/ad3_xmpexb",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112807/shopIT/ad3_xmpexb.jpg"
+        }
+    ],
         "category" : "Electronics",
         "seller" : "Amazon",
         "stock" : 0,
@@ -37,6 +55,14 @@
         "images" : [{
             "public_id" : "shopIT/cr1_dj7fmk",
             "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112806/shopIT/cr1_dj7fmk.jpg"
+        },
+        {
+            "public_id" : "shopIT/cr2_ca5ytv",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112806/shopIT/cr2_ca5ytv.jpg"
+        },
+        {
+            "public_id" : "shopIT/cr3_qifmrr",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112803/shopIT/cr3_qifmrr.jpg"
         }],
         "category" : "Electronics",
         "seller" : "Amazon",
@@ -52,6 +78,14 @@
         "images" : [{
             "public_id" : "shopIT/bs1_rxzu5i",
             "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112802/shopIT/bs1_rxzu5i.jpg"
+        },
+        {
+            "public_id" : "shopIT/bs2_t8ehrz",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112802/shopIT/bs2_t8ehrz.jpg"
+        },
+        {
+            "public_id" : "shopIT/bs3_l8h9xs",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112801/shopIT/bs3_l8h9xs.jpg"
         }],
         "category" : "Headphones",
         "seller" : "Amazon",
@@ -67,6 +101,14 @@
         "images" : [{
             "public_id" : "shopIT/ap3_nzx6xn",
             "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112796/shopIT/ap3_nzx6xn.jpg"
+        },
+        {
+            "public_id" : "shopIT/ap2_svxeax",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112797/shopIT/ap2_svxeax.jpg"
+        },
+        {
+            "public_id" : "shopIT/ap1_y2qc8l",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112799/shopIT/ap1_y2qc8l.jpg"
         }],
         "category" : "Electronics",
         "seller" : "Amazon",
@@ -82,6 +124,14 @@
         "images" : [{
             "public_id" : "shopIT/cb1_vlsgch",
             "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112796/shopIT/cb1_vlsgch.jpg"
+        },
+        {
+            "public_id" : "shopIT/cb2_g4nztp",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112795/shopIT/cb2_g4nztp.jpg"
+        },
+        {
+            "public_id" : "shopIT/cb3_k6octp",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112793/shopIT/cb3_k6octp.jpg"
         }],
         "category" : "Accessories",
         "seller" : "Amazon",
@@ -94,9 +144,19 @@
         "price" : "496.95",
         "description" : "You don't need to be a photographer to know a great photo when you see one. And you don't need to be a photographer to take a great photo—you just need the D3500. It's as easy to use as a point-and-shoot, but it takes beautiful DSLR photos and videos that get noticed. It feels outstanding in your hands, sturdy and balanced with controls where you want them. It's compact, durable and versatile, ideal for travel. And it works seamlessly with compatible smartphones, making it easier than ever to share your great photos. Even if you've never picked up a DSLR camera, you can take beautiful pictures with D3500.",
         "ratings" : 4.7,
-        "images" : [{
+        "images" : [
+            {
+                "public_id" : "shopIT/nk1_lg0jss",
+                "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112792/shopIT/nk1_lg0jss.jpg"
+            },
+            {
             "public_id" : "shopIT/nk2_htdf1q",
             "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112792/shopIT/nk2_htdf1q.jpg"
+        },
+        
+        {
+            "public_id" : "shopIT/nk3_ohqng7",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112791/shopIT/nk3_ohqng7.jpg"
         }],
         "category" : "Cameras",
         "seller" : "Amazon",
@@ -112,6 +172,14 @@
         "images" : [{
             "public_id" : "shopIT/mc1_ryove9",
             "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112791/shopIT/mc1_ryove9.jpg"
+        },
+        {
+            "public_id" : "shopIT/mc2_mqmwcv",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112788/shopIT/mc2_mqmwcv.jpg"
+        },
+        {
+            "public_id" : "shopIT/mc3_uxyzng",
+            "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112788/shopIT/mc3_uxyzng.jpg"
         }],
         "category" : "Laptops",
         "seller" : "Amazon",
@@ -130,15 +198,86 @@
                 "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112787/shopIT/apple3_egkvzc.jpg"
             },
             {
-                "public_id" : "products/i0k1wdwi5hrpmzwxvsds",
-                "url" : "https://res.cloudinary.com/bookit/image/upload/v1606293152/products/i0k1wdwi5hrpmzwxvsds.jpg" 
+                "public_id" : "shopIT/apple2_kycl3b",
+                "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112787/shopIT/apple2_kycl3b.jpg" 
             },
             {
-                "public_id" : "products/bshmuo9qisfhz4azvnsd",
-                "url" : "https://res.cloudinary.com/bookit/image/upload/v1606293153/products/bshmuo9qisfhz4azvnsd.jpg"
+                "public_id" : "shopIT/apple_k4ckby",
+                "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112788/shopIT/apple_k4ckby.jpg"
             }
     ],
         "category" : "Food",
+        "seller" : "Kauffman's Fruit Farm & Market",
+        "stock" : 500,
+        "numOfReviews" : 1,
+        "reviews": []
+    },
+    {
+        "name" : "Fire-Boltt Ninja Call Pro Plus 1.83Smart Watch with Bluetooth Calling, AI Voice Assistance, 100 Sports Modes IP67 Rating, 240 * 280 Pixel High Resolution",
+        "price" : "124",
+        "description" : "1.83 HD Display Smart Watch】- The 46.48mm (1.83-inch) HD display makes the display clear and true-to-life, with vivid colours ensuring smooth readability and keeping the watch as exquisite to look at as when you first lay your eyes on it. The watch has a 280 NITS Peak Brightness",
+        "ratings" : 4.7,
+        "images" : [
+            {
+                "public_id" : "shopIT/fire1_vzikfx",
+                "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697122542/shopIT/fire1_vzikfx.jpg"
+            },
+            {
+                "public_id" : "shopIT/fire2_evgz3u",
+                "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697122541/shopIT/fire2_evgz3u.jpg" 
+            },
+            {
+                "public_id" : "shopIT/fire3_jx28k5",
+                "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697122541/shopIT/fire3_jx28k5.jpg"
+            }
+    ],
+        "category" : "Electronics",
+        "seller" : "Firebolt",
+        "stock" : 50,
+        "numOfReviews" : 45,
+        "reviews": []
+    },
+    {
+        "name" : "Lavie Women's Horse Bag | Ladies Purse Handbag",
+        "price" : "30",
+        "description" : "Looking for a stylish and functional handbag to keep all your essentials in place? Look no further than the Betula small tote! With its top zip closure, this bag will keep your belongings secure no matter where your day takes you",
+        "ratings" : 3.7,
+        "images" : [
+            {
+                "public_id" : "shopIT/lav1_qewwoe",
+                "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697123016/shopIT/lav1_qewwoe.jpg"
+            },
+            {
+                "public_id" : "shopIT/lav3_qwqi2m",
+                "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697123016/shopIT/lav3_qwqi2m.jpg" 
+            },
+            {
+                "public_id" : "shopIT/lav2_m1orc9",
+                "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697123017/shopIT/lav2_m1orc9.jpg"
+            }
+    ],
+        "category" : "Accessories",
+        "seller" : "Lavie",
+        "stock" : 50,
+        "numOfReviews" : 56,
+        "reviews": []
+    },
+    {
+        "name" : "Do It Today: Overcome procrastination, improve productivity and achieve more meaningful things [Paperback] Foroux, Darius",
+        "price" : "5.78",
+        "description" : "The book is about what to do today" ,
+        "ratings" : 4.5,
+        "images" : [
+            {
+                "public_id" : "shopIT/bk1_eh8z4l",
+                "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697123016/shopIT/bk1_eh8z4l.jpg"
+            },
+            {
+                "public_id" : "shopIT/bk2_s7mgux",
+                "url" : "https://res.cloudinary.com/shopit-fidha/image/upload/v1697123016/shopIT/bk2_s7mgux.jpg" 
+            }
+    ],
+        "category" : "Books",
         "seller" : "Kauffman's Fruit Farm & Market",
         "stock" : 500,
         "numOfReviews" : 1,

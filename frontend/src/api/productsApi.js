@@ -10,6 +10,7 @@ export const productApi = createApi({
                 url: "/products",
                 params: {
                     page: params?.page,
+                    keyword: params?.keyword,
                 }
             }),
         }),

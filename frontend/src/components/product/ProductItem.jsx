@@ -13,7 +13,7 @@ const ProductItem = ({ product }) => {
                     src={product?.images[0]?.url}
                     alt={product?.name}
                 />
-                <div className="card-body ps-3 d-flex justify-content-center flex-column">
+                <div className="mx-auto card-body ps-3 d-flex justify-content-center flex-column">
                     <h5 className="card-title">
                         <Link to={`/product/${product?._id}`}>{product?.name}</Link>
                     </h5>

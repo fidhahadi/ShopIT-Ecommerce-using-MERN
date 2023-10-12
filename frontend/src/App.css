@@ -30,6 +30,10 @@ nav {
   background-color: #232f3e;
   padding: 1rem 1rem;
 }
+.credentials{
+  display: flex;
+  
+}
 
 #search_btn {
   background-color: #febd69;

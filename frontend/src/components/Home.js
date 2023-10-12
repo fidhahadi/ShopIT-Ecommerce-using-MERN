@@ -14,11 +14,13 @@ const Home = () => {
 
     let [searchParams] = useSearchParams();
     const page = searchParams.get("page") || 1;
+    const keyword = searchParams.get("keyword") || "";
 
-    const params = { page };
+    const params = { page, keyword };
 
 
     const { data, isLoading, error, isError } = useGetProductsQuery(params);
+
     useEffect(() => {
         if (isError) {
             toast.error(error?.data?.message)
