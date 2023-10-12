@@ -7,7 +7,7 @@ import Loader from './layouts/Loader'
 import toast from 'react-hot-toast'
 import CustomPagination from './layouts/CustomPagination'
 import { useSearchParams } from 'react-router-dom'
-
+import Filters from './layouts/Filters'
 
 const Home = () => {
 
@@ -40,7 +40,7 @@ const Home = () => {
             <div className="row">
                 {keyword && (
                     <div className="col-6 col-md-3 mt-5">
-                        <p>Filters</p>
+                        <Filters />
                     </div>
                 )}
                 <div className={keyword ? "col-6 col-md-9" : "col-6 col-md-12"}>
