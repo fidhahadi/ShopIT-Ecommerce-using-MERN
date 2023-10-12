@@ -25,7 +25,7 @@ const Home = () => {
         }
 
     }, [isError, error])
-
+    console.log(data);
 
     if (isLoading) return < Loader />
 
