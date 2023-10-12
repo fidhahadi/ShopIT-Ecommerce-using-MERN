@@ -6,10 +6,19 @@ import ProductItem from './product/ProductItem'
 import Loader from './layouts/Loader'
 import toast from 'react-hot-toast'
 import CustomPagination from './layouts/CustomPagination'
+import { useSearchParams } from 'react-router-dom'
+
 
 const Home = () => {
 
-    const { data, isLoading, error, isError } = useGetProductsQuery();
+
+    let [searchParams] = useSearchParams();
+    const page = searchParams.get("page") || 1;
+
+    const params = { page };
+
+
+    const { data, isLoading, error, isError } = useGetProductsQuery(params);
     useEffect(() => {
         if (isError) {
             toast.error(error?.data?.message)
@@ -21,22 +30,7 @@ const Home = () => {
     if (isLoading) return < Loader />
 
     return (
-        // <>
-        //     <MetaData title={'Buy Best Products Online'} />
 
-        //     <h1 id='products_heading'>Latest Products</h1>
-        //     <section id="products" className="container mt-5">
-        //         <div className="row">
-        //             {
-        //                 data?.products?.map((product) => (
-        //                     <ProductItem product={product} />
-        //                 ))
-        //             }
-
-        //         </div>
-        //     </section>
-        //     <CustomPagination resPerPage={data?.resPerPage} filterProductsCount={data?.filterProductsCount} />
-        // </>
         <>
             <MetaData title={"Buy Best Products Online"} />
             <div className="row">
