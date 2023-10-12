@@ -29,6 +29,8 @@ const Home = () => {
     }, [isError, error])
     console.log(data);
 
+    const columnSize = keyword ? 4 : 3;
+
     if (isLoading) return < Loader />
 
     return (
@@ -36,19 +38,31 @@ const Home = () => {
         <>
             <MetaData title={"Buy Best Products Online"} />
             <div className="row">
-
-                <section id="products" className="mt-5">
-                    <div className="row">
-                        {data?.products?.map((product) => (
-                            <ProductItem product={product} columnSize={20} />
-                        ))}
+                {keyword && (
+                    <div className="col-6 col-md-3 mt-5">
+                        <p>Filters</p>
                     </div>
-                </section>
+                )}
+                <div className={keyword ? "col-6 col-md-9" : "col-6 col-md-12"}>
+                    <h1 id="products_heading" className="text-secondary">
+                        {keyword
+                            ? `${data?.products?.length} Products found with keyword: ${keyword}`
+                            : "Latest Products"}
+                    </h1>
 
-                <CustomPagination
-                    resPerPage={data?.resPerPage}
-                    filteredProductsCount={data?.filteredProductsCount}
-                />
+                    <section id="products" className="mt-5">
+                        <div className="row">
+                            {data?.products?.map((product) => (
+                                <ProductItem product={product} columnSize={columnSize} />
+                            ))}
+                        </div>
+                    </section>
+
+                    <CustomPagination
+                        resPerPage={data?.resPerPage}
+                        filteredProductsCount={data?.filteredProductsCount}
+                    />
+                </div>
             </div>
         </>
 
