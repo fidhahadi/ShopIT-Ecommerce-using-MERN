@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useGetProductDetailsQuery } from "../../api/productsApi";
+import { useGetProductDetailsQuery } from "../../redux/api/productsApi";
 import Loader from "../layouts/Loader";
 import StarRatings from "react-star-ratings";
 import toast from "react-hot-toast";

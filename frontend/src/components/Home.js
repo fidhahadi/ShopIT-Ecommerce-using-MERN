@@ -1,6 +1,6 @@
 import { React, useEffect } from 'react'
 import MetaData from './layouts/MetaData'
-import { useGetProductsQuery } from '../api/productsApi'
+import { useGetProductsQuery } from '../redux/api/productsApi'
 
 import ProductItem from './product/ProductItem'
 import Loader from './layouts/Loader'

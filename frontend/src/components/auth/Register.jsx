@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useRegisterMutation } from '../../api/authApi'
+import { useRegisterMutation } from '../../redux/api/authApi'
 import toast from 'react-hot-toast';
 
 

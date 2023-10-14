@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import React from 'react'
-import { useLoginMutation } from "../../api/authApi";
+import { useLoginMutation } from "../../redux/api/authApi";
 import toast from "react-hot-toast";
 
 
