@@ -1,11 +1,13 @@
 import React from 'react'
 import Search from './Search'
 import { useGetMeQuery } from '../../redux/api/userApi'
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
-    const { data } = useGetMeQuery();
-    console.log(data);
+    const { isLoading } = useGetMeQuery();
+    const { user } = useSelector((state) => state.auth)
 
 
     return (
@@ -13,21 +15,19 @@ const Header = () => {
             <div className="col-12 col-md-3 ps-5">
                 <div className="navbar-brand">
                     <a href="/">
-                        <img src="../images/shopit_logo.png" alt="ShopIT Logo" />
+                        <img src="/images/shopit_logo.png" alt="ShopIT Logo" />
                     </a>
                 </div>
             </div>
             <div className="col-12 col-md-6 mt-2 mt-md-0">
                 <Search />
-
             </div>
-            <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-                <div className='credentials'>
-                    <a href="/cart" style={{ textDecoration: "none" }}>
-                        <span id="cart" className="ms-3"> Cart </span>
-                        <span className="ms-1" id="cart_count">0</span>
-                    </a>
-
+            <div className="col-12 col-md-3 mt-4 mt-md-0 d-flex justify-content-end align-items-center">
+                <a href="/cart" style={{ textDecoration: "none" }} className="ms-3 text-white">
+                    <span id="cart">Cart</span>
+                    <span id="cart_count" className="ms-1">0</span>
+                </a>
+                {user ? (
                     <div className="ms-4 dropdown">
                         <button
                             className="btn dropdown-toggle text-white"
@@ -38,29 +38,31 @@ const Header = () => {
                         >
                             <figure className="avatar avatar-nav">
                                 <img
-                                    src="../images/default_avatar.jpg"
+                                    src={user?.avatar ? user?.avatar?.url : "/images/default_avatar.jpg"}
                                     alt="User Avatar"
                                     className="rounded-circle"
                                 />
                             </figure>
-                            <span>User</span>
+                            <span className="ms-1">{user?.name}</span>
                         </button>
                         <div className="dropdown-menu w-100" aria-labelledby="dropDownMenuButton">
-                            <a className="dropdown-item" href="/admin/dashboard"> Dashboard </a>
-
-                            <a className="dropdown-item" href="/me/orders"> Orders </a>
-
-                            <a className="dropdown-item" href="/me/profile"> Profile </a>
-
-                            <a className="dropdown-item text-danger" href="/"> Logout </a>
+                            <Link className="dropdown-item" to="/admin/dashboard">Dashboard</Link>
+                            <Link className="dropdown-item" to="/me/orders">Orders</Link>
+                            <Link className="dropdown-item" to="/me/profile">Profile</Link>
+                            <Link className="dropdown-item text-danger" to="/">Logout</Link>
                         </div>
                     </div>
-
-                    <a href="/login" className="btn ms-4" id="login_btn"> Login </a>
-
-                </div>
+                ) : (
+                    !isLoading && (
+                        <Link to="/login" className="btn ms-4" id="login_btn">
+                            Login
+                        </Link>
+                    )
+                )}
             </div>
-        </nav >
+        </nav>
+
+
 
     )
 }
