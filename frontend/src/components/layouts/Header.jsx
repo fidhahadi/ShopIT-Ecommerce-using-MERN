@@ -24,8 +24,8 @@ const Header = () => {
             </div>
             <div className="col-12 col-md-3 mt-4 mt-md-0 d-flex justify-content-end align-items-center">
                 <a href="/cart" style={{ textDecoration: "none" }} className="ms-3 text-white">
-                    <span id="cart">Cart</span>
-                    <span id="cart_count" className="ms-1">0</span>
+                    <span id="cart">Cart      </span>
+                    <span id="cart_count" className="ms-1">  0</span>
                 </a>
                 {user ? (
                     <div className="ms-4 dropdown">
@@ -60,7 +60,7 @@ const Header = () => {
                     )
                 )}
             </div>
-        </nav>
+        </nav >
 
 
 
