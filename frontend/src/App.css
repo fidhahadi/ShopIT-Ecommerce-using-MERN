@@ -1,6 +1,6 @@
 html,
 body {
-  font-family: 'Amazon Ember';
+  font-family: "Amazon Ember";
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -30,9 +30,15 @@ nav {
   background-color: #232f3e;
   padding: 1rem 1rem;
 }
-.options{
-  display: flex;
-  
+
+.navbar {
+  padding: 0.1rem 1rem;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 #search_btn {
@@ -50,10 +56,11 @@ nav {
 }
 
 #login_btn,
-#view_btn {
-  background-color: #febd69;
+#view_btn,
+#new_review_btn {
+  background-color: #fa9c23;
   padding: 0.4rem 1.8rem;
-  font-family: calibri;
+  color: white;
 }
 
 #cart {
@@ -81,6 +88,7 @@ nav {
 
 .card-title a {
   color: #2e2e2e;
+  text-decoration: none;
 }
 
 .card-title a:hover {
@@ -96,11 +104,6 @@ nav {
   font-size: 1.4rem;
 }
 
-#view_btn {
-  background-color: #fa9c23;
-  color: white;
-}
-
 .card-img-top {
   width: 200px;
   height: 150px;
@@ -112,44 +115,22 @@ nav {
 }
 
 #no_of_reviews {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: grey;
-  margin-left: 0.5rem;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Footer */
 footer {
-  margin-top: 8rem;
+  margin-top: auto;
   color: grey;
   bottom: 0;
   width: 100%;
-}
-
-/* Ratings */
-
-.rating-outer {
-  display: inline-block;
-  position: relative;
-  font-family: FontAwesome;
-  color: #fdcc0d;
-}
-
-.rating-outer::before {
-  content: '\f006 \f006 \f006 \f006 \f006';
-}
-
-.rating-inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-}
-
-.rating-inner::before {
-  content: '\f005 \f005 \f005 \f005 \f005';
-  color: #f8ce0b;
 }
 
 /* Product Details Page */
@@ -205,7 +186,7 @@ footer {
   padding-left: 0;
 }
 .loader:after {
-  content: ' ';
+  content: " ";
   display: block;
   width: 64px;
   height: 64px;
@@ -310,11 +291,17 @@ footer {
   padding: 2.5rem 3rem;
 }
 
-.wrapper form .btn {
+.wrapper form .btn,
+.fetch-btn {
   background-color: #fa9c23;
   border-color: #fa9c23;
   color: white;
-  margin-top: 2.5rem;
+  margin-top: 1rem;
+}
+
+.fetch-btn:hover {
+  background-color: #fa9c23;
+  color: white;
 }
 
 .wrapper form a {
@@ -460,7 +447,8 @@ footer {
   margin-left: 1.5rem;
 }
 
-.update-btn {
+.update-btn,
+#create_btn {
   background-color: #fa9c23;
   border-color: #fa9c23;
   color: white;
@@ -484,91 +472,6 @@ footer {
   color: #fa9c23;
 }
 
-/* Admin Sidebar */
-
-.sidebar-wrapper {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
-  min-height: 100vh;
-  font-weight: normal;
-
-  margin-top: 0;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: 10;
-}
-#sidebar {
-  min-width: 100%;
-  max-width: 100%;
-  background: #232f3e;
-  color: #fff;
-  transition: all 0.3s;
-}
-#sidebar.active {
-  margin-left: -250px;
-}
-
-#sidebar .sidebar-header {
-  padding: 20px;
-  background: #232f3e;
-}
-#sidebar ul.components {
-  padding: 5px 0px;
-  border-bottom: 1px solid #232f3e;
-}
-
-#sidebar ul li a {
-  padding: 10px;
-  font-size: 1.1em;
-  display: block;
-  color: white;
-  text-decoration: none;
-}
-#sidebar ul li a:hover {
-  color: #232f3e;
-  background: #fff;
-}
-
-#sidebar ul li a i {
-  margin-right: 0.3rem;
-}
-
-#sidebar ul li.active > a,
-a[aria-expanded='true'] {
-  color: #fff;
-  background: #232f3e;
-}
-a[data-toggle='collapse'] {
-  position: relative;
-}
-.dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-}
-
-ul ul a {
-  font-size: 1rem !important;
-  padding-left: 30px !important;
-  background: #232f3e;
-}
-
-ul.CTAs {
-  padding: 20px;
-}
-
-ul.CTAs a {
-  text-align: center;
-  font-size: 0.9em !important;
-  display: block;
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
-
 /* Products List Admin */
 #products_table .btn {
   padding: 0.2rem 0.5rem;
@@ -576,6 +479,12 @@ ul.CTAs a {
 }
 
 /* Dashboard */
+
+.admin-child-wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
 .card-font-size {
   font-size: 1.5rem;
@@ -617,4 +526,40 @@ ul.CTAs a {
 .review_user {
   font-size: 0.8rem;
   color: grey;
+}
+
+.cross-button {
+  background-color: #dc3545;
+}
+
+#filter_form .row .col {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#filter_form button {
+  background-color: #fa9c23;
+  border-color: #fa9c23;
+}
+
+.filter {
+  margin-top: 5.8rem;
+}
+
+/* Sidebar */
+
+.list-group-item:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.list-group-item {
+  border: none;
+}
+
+.list-group-item.active {
+  background-color: #f3f4f6;
+  border-color: #f3f4f6;
+  border-radius: 0.3rem;
+  color: #fa9c23;
 }
