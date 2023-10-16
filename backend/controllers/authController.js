@@ -5,7 +5,7 @@ const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const sendToken = require('../utils/sendToken');
 const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
-const { upload_file } = require('../utils/cloudinary');
+const { upload_file, delete_file } = require('../utils/cloudinary');
 
 
 
@@ -69,6 +69,13 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 //Upload avatar => /api/v1/me/upload_avatar
 exports.uploadAvatar = catchAsyncErrors(async (req, res, next) => {
     const avatarResponse = await upload_file(req?.body?.avatar, "shopIt-avatars");
+
+    //remove previous avatar
+    if (!req?.user?.avatar?.url) {
+        await delete_file(req?.user?.avatar?.public_id);
+    }
+
+
 
     const user = await User.findByIdAndUpdate(req?.user?._id, {
         avatar: avatarResponse,

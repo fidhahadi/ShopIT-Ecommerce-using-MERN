@@ -8,10 +8,8 @@ cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
-})
-
-//upload an avatar
 exports.upload_file = (file, folder) => {
     return new Promise((resolve, reject) => {
         cloudinary.uploader.upload(
@@ -30,10 +28,8 @@ exports.upload_file = (file, folder) => {
     });
 };
 
-
-
 exports.delete_file = async (file) => {
     const res = await cloudinary.uploader.destroy(file);
 
-    if (res?.resullt === "ok") return true;
+    if (res?.result === "ok") return true;
 };
