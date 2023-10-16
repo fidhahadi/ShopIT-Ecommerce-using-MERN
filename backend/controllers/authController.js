@@ -5,6 +5,7 @@ const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const sendToken = require('../utils/sendToken');
 const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
+const { upload_file } = require('../utils/cloudinary');
 
 
 
@@ -62,6 +63,23 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 
     sendToken(user, 200, res)
 })
+
+
+
+//Upload avatar => /api/v1/me/upload_avatar
+exports.uploadAvatar = catchAsyncErrors(async (req, res, next) => {
+    const avatarResponse = await upload_file(req?.body?.avatar, "shopIt-avatars");
+
+    const user = await User.findByIdAndUpdate(req?.user?._id, {
+        avatar: avatarResponse,
+    });
+
+
+    res.status(200).json({
+        user,
+    })
+})
+
 
 
 //Forgot password => /api/v1/password/forgot

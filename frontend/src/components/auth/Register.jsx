@@ -29,7 +29,7 @@ const Register = () => {
         if (error) {
             toast.error(data?.error?.message);
         }
-    }, [error, isAuthenticated]);
+    }, [error, isAuthenticated,]);
 
     const submitHandler = (e) => {
         e.preventDefault();
