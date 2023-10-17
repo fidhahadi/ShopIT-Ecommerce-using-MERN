@@ -17,7 +17,8 @@ const UpdatePassword = () => {
 
     useEffect(() => {
         if (error) {
-            toast.error(error?.data?.message);
+            console.log(error);
+            toast.error(error?.data?.message || "Error occured");
         }
 
         if (isSuccess) {
@@ -33,7 +34,7 @@ const UpdatePassword = () => {
             oldPassword,
             password,
         };
-
+        console.log(userData);
         updatePassword(userData);
     };
 
