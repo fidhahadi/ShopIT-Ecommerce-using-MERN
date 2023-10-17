@@ -11,7 +11,7 @@ const { upload_file, delete_file } = require('../utils/cloudinary');
 const { getResetPasswordTemplate } = require("../utils/emailTemplates.js");
 
 
-//resister a user => /api/v1/register
+//register a user => /api/v1/register
 
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     const { name, email, password } = req.body;
@@ -108,7 +108,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     await user.save();
 
     // Create reset password url
-    const resetUrl = `${process.env.FRONTEND_URL}/api/v1/password/reset/${resetToken}`;
+    const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
 
     const message = getResetPasswordTemplate(user?.name, resetUrl);
 
