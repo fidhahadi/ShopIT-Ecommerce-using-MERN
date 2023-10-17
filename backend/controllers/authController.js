@@ -1,5 +1,6 @@
 const User = require('../models/user');
 
+
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const sendToken = require('../utils/sendToken');
@@ -7,6 +8,7 @@ const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
 const { upload_file, delete_file } = require('../utils/cloudinary');
 
+const { getResetPasswordTemplate } = require("../utils/emailTemplates.js");
 
 
 //resister a user => /api/v1/register
@@ -93,48 +95,44 @@ exports.uploadAvatar = catchAsyncErrors(async (req, res, next) => {
 
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
-
+    // Find user in the database
     const user = await User.findOne({ email: req.body.email });
 
     if (!user) {
-        return next(new ErrorHandler('User not found with this email', 404));
-
+        return next(new ErrorHandler("User not found with this email", 404));
     }
 
-
-
+    // Get reset password token
     const resetToken = user.getResetPasswordToken();
 
-    await user.save({ validateBeforeSave: false })
+    await user.save();
 
+    // Create reset password url
+    const resetUrl = `${process.env.FRONTEND_URL}/api/v1/password/reset/${resetToken}`;
 
-    //create reset password url
-    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`
+    const message = getResetPasswordTemplate(user?.name, resetUrl);
 
-
-    const message = `Your password reset token is as follows :\n\n${resetUrl}\n\nIf you have not requested this email, ignore it`
     try {
-
         await sendEmail({
             email: user.email,
-            subject: 'ShopIT Password Recovery',
-            message
-        })
-        res.status(200).json({
-            success: true,
-            message: `Email sent to ${user.email}`
-        })
+            subject: "ShopIT Password Recovery",
+            message,
+        });
 
+        res.status(200).json({
+            message: `Email sent to: ${user.email}`,
+        });
     } catch (error) {
         user.resetPasswordToken = undefined;
         user.resetPasswordExpire = undefined;
 
-        await user.save({ validateBeforeSave: false });
-
-        return next(new ErrorHandler(error.message, 500))
+        await user.save();
+        return next(new ErrorHandler(error?.message, 500));
     }
+});
 
-})
+
+
 
 //Reset password => /api/v1/password/reset/:token
 exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
