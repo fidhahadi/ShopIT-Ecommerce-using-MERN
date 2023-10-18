@@ -8,10 +8,15 @@ import toast from "react-hot-toast";
 
 const ProductDetails = () => {
     const params = useParams();
+
+
+    const [quantity, setQuantity] = useState(1);
+    const [activeImg, setActiveImg] = useState("");
+
+
     const { data, isLoading, error, isError } = useGetProductDetailsQuery(params?.id);
     const product = data?.product;
 
-    const [activeImg, setActiveImg] = useState("");
 
     useEffect(() => {
         setActiveImg(
@@ -33,6 +38,23 @@ const ProductDetails = () => {
 
     if (isLoading) return < Loader />
 
+    const decreaseQty = () => {
+        const count = document.querySelector(".count");
+
+        if (count.valueAsNumber <= 1) return;
+
+        const qty = count.valueAsNumber - 1;
+        setQuantity(qty);
+    }
+
+    const increaseQty = () => {
+        const count = document.querySelector(".count");
+
+        if (count.valueAsNumber >= product?.stock) return;
+
+        const qty = count.valueAsNumber + 1;
+        setQuantity(qty);
+    }
 
     return (
         <div className="row d-flex justify-content-around">
@@ -42,12 +64,11 @@ const ProductDetails = () => {
                         className="d-block w-100"
                         src={activeImg}
                         alt={product?.name}
-                        width="340"
-                        height="390"
                     />
-                </div>
-                <div className="row justify-content-start mt-5">
-                    {product?.images?.map((img) => (
+
+                    <h4 className="mt-2">Description:</h4>
+                    <p>{product?.description}
+                    </p>         {product?.images?.map((img) => (
                         <div className="col-3 ms-4 mt-2">
                             <a role="button">
                                 <img
@@ -90,14 +111,14 @@ const ProductDetails = () => {
 
                 <p id="product_price">${product?.price}</p>
                 <div className="stockCounter d-inline">
-                    <span className="btn btn-danger minus">-</span>
+                    <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
                     <input
                         type="number"
                         className="form-control count d-inline"
-                        value="1"
+                        value={quantity}
                         readonly
                     />
-                    <span className="btn btn-primary plus">+</span>
+                    <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
                 </div>
                 <button
                     type="button"
