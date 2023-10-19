@@ -46,6 +46,7 @@ const ProductDetails = () => {
         const qty = count.valueAsNumber - 1;
         setQuantity(qty);
     }
+    //increase
 
     const increaseQty = () => {
         const count = document.querySelector(".count");
