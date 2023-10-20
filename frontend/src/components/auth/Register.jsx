@@ -3,6 +3,7 @@ import { useRegisterMutation } from '../../redux/api/authApi'
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import MetaData from '../layouts/MetaData';
 
 
 const Register = () => {
