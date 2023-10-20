@@ -3,7 +3,7 @@ import MetaData from '../layouts/MetaData'
 import CheckoutSteps from './CheckoutSteps'
 import { useSelector } from 'react-redux';
 import { calculateOrderCost } from '../../helpers/helpers';
-import { useCreateNewOrderMutation } from '../../redux/api/orderApi';
+import { useCreateNewOrderMutation, useStripeCheckoutSessionMutation } from '../../redux/api/orderApi';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 
@@ -15,7 +15,19 @@ const PaymentMethod = () => {
     const { shippingInfo, cartItems } = useSelector((state) => state.cart);
     const { itemPrice, shippingPrice, taxPrice, totalPrice } = calculateOrderCost(cartItems);
 
-    const [createNewOrder, isLoading, error, isSuccess] = useCreateNewOrderMutation();
+    const [createNewOrder, { error, isSuccess }] = useCreateNewOrderMutation();
+
+    const [stripeCheckoutSession, { data: checkoutdata, error: checkoutError, isLoading }] = useStripeCheckoutSessionMutation();
+
+
+    useEffect(() => {
+        if (checkoutdata) {
+            window.location.href = checkoutdata?.url;
+        }
+        if (checkoutError) {
+            toast.error(checkoutError?.data?.message);
+        }
+    }, [checkoutdata, checkoutError])
 
     useEffect(() => {
         if (error) {
@@ -50,7 +62,16 @@ const PaymentMethod = () => {
 
         if (method === "Card") {
             //Stripe checkout
-            alert("Card Payment");
+            const orderData = {
+                shippingInfo,
+                orderItems: cartItems,
+                itemPrice,
+                shippingAmount: shippingPrice,
+                taxAmount: taxPrice,
+                totalAmount: totalPrice,
+            };
+
+            stripeCheckoutSession(orderData);
         }
     }
 
@@ -95,7 +116,7 @@ const PaymentMethod = () => {
                             </label>
                         </div>
 
-                        <button id="shipping_btn" type="submit" className="btn py-2 w-100">
+                        <button id="shipping_btn" type="submit" className="btn py-2 w-100" disabled={isLoading}>
                             CONTINUE
                         </button>
                     </form>

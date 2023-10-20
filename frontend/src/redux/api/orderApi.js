@@ -10,7 +10,16 @@ export const orderApi = createApi({
                 return {
                     url: "/orders/new",
                     method: "POST",
-                    body
+                    body,
+                }
+            },
+        }),
+        stripeCheckoutSession: builder.mutation({
+            query(body) {
+                return {
+                    url: "/payment/checkout_session",
+                    method: "POST",
+                    body,
                 }
             },
         }),
@@ -18,4 +27,6 @@ export const orderApi = createApi({
 });
 
 
-export const { useCreateNewOrderMutation } = orderApi
+export const { useCreateNewOrderMutation,
+    useStripeCheckoutSessionMutation
+} = orderApi
