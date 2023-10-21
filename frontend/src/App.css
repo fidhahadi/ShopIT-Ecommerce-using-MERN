@@ -62,6 +62,10 @@ nav {
   padding: 0.4rem 1.8rem;
   color: white;
 }
+#button-property{
+  margin: none;
+  border: none;
+}
 
 #cart {
   font-size: 1rem;

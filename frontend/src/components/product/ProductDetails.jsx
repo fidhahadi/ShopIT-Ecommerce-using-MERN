@@ -85,7 +85,7 @@ const ProductDetails = () => {
                     <div className="row justify-content-start mt-5">
                         {product?.images?.map((img) => (
                             <div className="col-2 ms-4 mt-2">
-                                <a role="button">
+                                <button role="button" className="button-property">
                                     <img
                                         className={`d-block border rounded p-3 cursor-pointer ${img.url === activeImg ? "border-warning" : ""
                                             } `}
@@ -95,7 +95,7 @@ const ProductDetails = () => {
                                         alt={img?.url}
                                         onClick={(e) => setActiveImg(img.url)}
                                     />
-                                </a>
+                                </button>
                             </div>
                         ))}
                     </div>

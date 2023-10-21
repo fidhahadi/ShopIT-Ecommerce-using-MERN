@@ -12,14 +12,14 @@ const { newOrder,
 
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 
-router.route('/order/new').post(isAuthenticatedUser, newOrder);
+router.route('/orders/new').post(isAuthenticatedUser, newOrder);
 
-router.route('/order/:id').get(isAuthenticatedUser, getSingleOrder);
-router.route('/orders/me').get(isAuthenticatedUser, myOrders);
+router.route('/orders/:id').get(isAuthenticatedUser, getSingleOrder);
+router.route('/me/orders').get(isAuthenticatedUser, myOrders);
 
 router.route('/admin/orders').get(isAuthenticatedUser, authorizeRoles('admin'), allOrders);
 
-router.route('/admin/order/:id').put(isAuthenticatedUser, authorizeRoles('admin'), updateOrderStatus)
+router.route('/admin/orders/:id').put(isAuthenticatedUser, authorizeRoles('admin'), updateOrderStatus)
     .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteOrder);
 
 

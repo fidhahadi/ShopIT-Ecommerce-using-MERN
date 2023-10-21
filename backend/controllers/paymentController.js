@@ -8,7 +8,6 @@ const Order = require("../models/order");
 
 exports.stripeCheckoutSession = catchAsyncErrors(
     async (req, res, next) => {
-
         const body = req?.body;
 
         const line_items = body?.orderItems?.map((item) => {
@@ -18,34 +17,30 @@ exports.stripeCheckoutSession = catchAsyncErrors(
                     product_data: {
                         name: item?.name,
                         images: [item?.image],
-                        metadata: {
-                            productId: item?.product
-                        },
+                        metadata: { productId: item?.product },
                     },
-                    unit_amount: item?.price * 100
+                    unit_amount: item?.price * 100,
                 },
                 tax_rates: ["txr_1O3LdDDoXoQTZ5kwyQaWFgKw"],
                 quantity: item?.quantity,
             };
         });
 
+        const shippingInfo = body?.shippingInfo;
 
-        const shippingInfo = body?.shippingInfo
-
-
-        const shipping_rate = body?.itemPrice >= 200 ? "shr_1O3M8SDoXoQTZ5kw2onng9RO" : "shr_1O3LTGDoXoQTZ5kwgbZRplUW";
+        const shipping_rate =
+            body?.itemsPrice >= 200
+                ? "shr_1O3M8SDoXoQTZ5kw2onng9RO"
+                : "shr_1O3LTGDoXoQTZ5kwgbZRplUW";
 
         const session = await stripe.checkout.sessions.create({
-            payment_method_types: ['card'],
+            payment_method_types: ["card"],
             success_url: `${process.env.FRONTEND_URL}/me/orders`,
             cancel_url: `${process.env.FRONTEND_URL}`,
             customer_email: req?.user?.email,
             client_reference_id: req?.user?._id?.toString(),
-            mode: 'payment',
-            metadata: {
-                ...shippingInfo,
-                itemPrice: body?.itemPrice,
-            },
+            mode: "payment",
+            metadata: { ...shippingInfo, itemsPrice: body?.itemsPrice },
             shipping_options: [
                 {
                     shipping_rate,
@@ -54,13 +49,12 @@ exports.stripeCheckoutSession = catchAsyncErrors(
             line_items,
         });
 
-        console.log(session);
-
         res.status(200).json({
-            url: session?.url,
+            url: session.url,
+        });
+    }
+);
 
-        })
-    })
 
 const getOrderItems = async (line_items) => {
     return new Promise((resolve, reject) => {
@@ -87,68 +81,61 @@ const getOrderItems = async (line_items) => {
 
 
 //Create a new order after payment  => /api/v1/payment/webhook
-exports.stripeWebhook = catchAsyncErrors(
-    async (req, res, next) => {
+exports.stripeWebhook = catchAsyncErrors(async (req, res, next) => {
+    try {
+        const signature = req.headers["stripe-signature"];
 
-        try {
+        const event = stripe.webhooks.constructEvent(
+            req.rawBody,
+            signature,
+            process.env.STRIPE_WEBHOOK_SECRET
+        );
 
-            const signature = req.headers("stripe-signature")
-            const event = stripe.webhooks.constructEvent(
-                req.rawBody,
-                signature,
-                process.env.STRIPE_WEBHOOK_SECRET);
+        if (event.type === "checkout.session.completed") {
+            const session = event.data.object;
 
-            if (event.type === 'checkout.session.completed') {
+            const line_items = await stripe.checkout.sessions.listLineItems(
+                session.id
+            );
 
+            const orderItems = await getOrderItems(line_items);
+            const user = session.client_reference_id;
 
-                const session = event.data.object;
+            const totalAmount = session.amount_total / 100;
+            const taxAmount = session.total_details.amount_tax / 100;
+            const shippingAmount = session.total_details.amount_shipping / 100;
+            const itemsPrice = session.metadata.itemsPrice;
 
+            const shippingInfo = {
+                address: session.metadata.address,
+                city: session.metadata.city,
+                phoneNo: session.metadata.phoneNo,
+                zipCode: session.metadata.zipCode,
+                country: session.metadata.country,
+            };
 
-                const line_items = await stripe.checkout.sessions.listLineItems(session.id);
+            const paymentInfo = {
+                id: session.payment_intent,
+                status: session.payment_status,
+            };
 
-                const orderItems = await getOrderItems(line_items);
+            const orderData = {
+                shippingInfo,
+                orderItems,
+                itemsPrice,
+                taxAmount,
+                shippingAmount,
+                totalAmount,
+                paymentInfo,
+                paymentMethod: "Card",
+                user,
+            };
 
-                const user = session.client_reference_id;
-                const totalAmount = session.amount_total / 100;
-                const taxAmount = session.total_details.amount_tax / 100;
-                const shippingAmount = session.total_details.amount_shipping / 100;
-                const itemPrice = session.metadata.itemPrice;
+            await Order.create(orderData);
 
-
-                const shippingInfo = {
-                    address: session.metadata.address,
-                    city: session.metadata.city,
-                    phoneNo: session.metadata.phoneNo,
-                    zipCode: session.metadata.zipCode,
-                    country: session.metadata.country,
-                };
-
-                const paymentInfo = {
-                    id: session.payment_intent,
-                    status: session.payment_status,
-                }
-                const orderData = {
-                    shippingInfo,
-                    orderItems,
-                    itemPrice,
-                    taxAmount,
-                    shippingAmount,
-                    totalAmount,
-                    paymentInfo,
-                    paymentMethod: "Card",
-                    user,
-                };
-
-                await Order.create(orderData);
-
-
-                res.status(200).json({
-                    success: true,
-                })
-            }
-
-        } catch (error) {
-            console.log("Error", error);
+            res.status(200).json({ success: true });
         }
+    } catch (error) {
+        console.log("Error => ", error);
     }
-)
+});

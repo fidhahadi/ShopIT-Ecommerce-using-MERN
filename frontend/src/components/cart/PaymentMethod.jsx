@@ -13,7 +13,7 @@ const PaymentMethod = () => {
     const [method, setMethod] = useState("");
 
     const { shippingInfo, cartItems } = useSelector((state) => state.cart);
-    const { itemPrice, shippingPrice, taxPrice, totalPrice } = calculateOrderCost(cartItems);
+    const { itemsPrice, shippingPrice, taxPrice, totalPrice } = calculateOrderCost(cartItems);
 
     const [createNewOrder, { error, isSuccess }] = useCreateNewOrderMutation();
 
@@ -36,7 +36,7 @@ const PaymentMethod = () => {
         if (isSuccess) {
             navigate("/");
         }
-    }, [error, isSuccess, navigate])
+    }, [error, isSuccess])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -46,7 +46,7 @@ const PaymentMethod = () => {
             const orderData = {
                 shippingInfo,
                 orderItems: cartItems,
-                itemPrice,
+                itemsPrice,
                 shippingAmount: shippingPrice,
                 taxAmount: taxPrice,
                 totalAmount: totalPrice,
@@ -65,7 +65,7 @@ const PaymentMethod = () => {
             const orderData = {
                 shippingInfo,
                 orderItems: cartItems,
-                itemPrice,
+                itemsPrice,
                 shippingAmount: shippingPrice,
                 taxAmount: taxPrice,
                 totalAmount: totalPrice,
