@@ -31,7 +31,7 @@ const UpdateProfile = () => {
             toast.success("User updated");
             navigate("/me/profile");
         }
-    }, [user, error, isSuccess]);
+    }, [user, error, isSuccess, navigate]);
 
     const submitHandler = (e) => {
         e.preventDefault();

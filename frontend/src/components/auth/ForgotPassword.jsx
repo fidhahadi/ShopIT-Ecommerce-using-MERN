@@ -23,7 +23,7 @@ const ForgotPassword = () => {
         if (isSuccess) {
             toast.success("Email sent. Please check your inbox.")
         }
-    }, [error, isSuccess, isAuthenticated])
+    }, [error, isSuccess, isAuthenticated, navigate])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -34,6 +34,7 @@ const ForgotPassword = () => {
 
     return (
         <>
+            <MetaData title={"Forgot Password"} />
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
                     <form

@@ -1,13 +1,11 @@
 import React from 'react'
 import MetaData from '../layouts/MetaData'
-import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { calculateOrderCost } from '../../helpers/helpers';
 import CheckoutSteps from './CheckoutSteps';
 
 const ConfirmOrder = () => {
-    const navigate = useNavigate();
 
 
     const { cartItems, shippingInfo } = useSelector((state) => state.cart);

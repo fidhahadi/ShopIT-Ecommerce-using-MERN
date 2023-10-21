@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import MetaData from '../layouts/MetaData';
 
+
 const ResetPassword = () => {
 
     const [password, setPassword] = useState("");
@@ -30,7 +31,7 @@ const ResetPassword = () => {
             navigate("/login");
         }
 
-    }, [error, isSuccess])
+    }, [error, isSuccess, navigate, isAuthenticated])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -47,7 +48,9 @@ const ResetPassword = () => {
 
 
     return (
+
         <>
+            <MetaData title={"Reset Password"} />
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
                     <form

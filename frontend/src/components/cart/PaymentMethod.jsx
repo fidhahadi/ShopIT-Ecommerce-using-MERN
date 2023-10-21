@@ -36,7 +36,7 @@ const PaymentMethod = () => {
         if (isSuccess) {
             navigate("/");
         }
-    }, [error, isSuccess])
+    }, [error, isSuccess, navigate])
 
     const submitHandler = (e) => {
         e.preventDefault();

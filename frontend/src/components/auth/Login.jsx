@@ -16,7 +16,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const [login, { isLoading, error, data }] = useLoginMutation();
+    const [login, { isLoading, error }] = useLoginMutation();
     const { isAuthenticated } = useSelector((state) => state.auth)
 
     useEffect(() => {
@@ -24,9 +24,9 @@ const Login = () => {
             navigate("/");
         }
         if (error) {
-            toast.error(data?.error?.message);
+            toast.error(error?.data?.message);
         }
-    }, [error, isAuthenticated]);
+    }, [error, isAuthenticated, navigate]);
 
     const submitHandler = (e) => {
         e.preventDefault();
