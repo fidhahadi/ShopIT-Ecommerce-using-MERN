@@ -14,6 +14,15 @@ export const orderApi = createApi({
                 }
             },
         }),
+        myOrders: builder.query({
+            query: () => `/me/orders`,
+
+        }),
+
+        orderDetails: builder.query({
+            query: (id) => `/orders/${id}`,
+        }),
+
         stripeCheckoutSession: builder.mutation({
             query(body) {
                 return {
@@ -28,5 +37,6 @@ export const orderApi = createApi({
 
 
 export const { useCreateNewOrderMutation,
-    useStripeCheckoutSessionMutation
-} = orderApi
+    useStripeCheckoutSessionMutation,
+    useMyOrdersQuery,
+    useOrderDetailsQuery } = orderApi
