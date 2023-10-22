@@ -57,7 +57,7 @@ const OrderDetails = () => {
                             </tr>
                             <tr>
                                 <th scope="row">Date</th>
-                                <td>{(order?.createdAt).substring(0, 10)}</td>
+                                <td>{new Date(order?.createdAt).toLocaleString("en-US")}</td>
                             </tr>
                         </tbody>
                     </table>
