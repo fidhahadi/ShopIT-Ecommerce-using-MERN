@@ -101,7 +101,6 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
     };
 
     const product = await Product.findById(productId);
-    console.log(product.numOfReviews)
 
     if (!product) {
         return next(new ErrorHandler("Product not found", 404));
@@ -120,7 +119,7 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
         });
     } else {
         product.reviews.push(review);
-        product.numOfReviews = numOfReviews + Number(product.reviews.length);
+        product.numOfReviews = product.reviews.length;
     }
 
     product.ratings =
