@@ -3,21 +3,38 @@ import { useMyOrdersQuery } from '/home/fidha/Desktop/work/shopit-ecommerce/fron
 import toast from 'react-hot-toast'
 import Loader from '../layouts/Loader'
 import { MDBDataTable } from 'mdbreact'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import MetaData from '../layouts/MetaData'
+import { useDispatch } from 'react-redux'
+import { clearCart } from '../../redux/features/cartSlice'
 
 const MyOrders = () => {
 
+    const navigate = useNavigate();
+
+    const [searchParams] = useSearchParams();
+
+    const dispatch = useDispatch();
+
+    const orderSuccess = searchParams.get("order_success");
 
     const { data, isLoading, error, isSuccess } = useMyOrdersQuery()
 
-    console.log(data)
+    console.log(data);
+
+
+
     useEffect(() => {
         if (error) {
             toast.error(error?.data?.message);
-
         }
-    }, [error])
+        if (orderSuccess) {
+            dispatch(clearCart());
+            navigate("/me/orders");
+        }
+    }, [error, orderSuccess])
+
+
     if (isLoading) return <Loader />
 
     const setOrders = () => {

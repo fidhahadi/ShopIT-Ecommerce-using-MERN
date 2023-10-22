@@ -52,7 +52,7 @@ const OrderDetails = () => {
                             <tr>
                                 <th scope="row">Status</th>
                                 <td className="greenColor">
-                                    <b>Delivered</b>
+                                    <b>{order?.orderStatus}</b>
                                 </td>
                             </tr>
                             <tr>
@@ -86,20 +86,20 @@ const OrderDetails = () => {
                             <tr>
                                 <th scope="row">Status</th>
                                 <td className={isPaid ? "greenColor" : "redColor"}>
-                                    <b>PAID</b>
+                                    <b>{order?.paymentInfo?.status}</b>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Method</th>
-                                <td>Credit Card</td>
+                                <td>{order?.paymentMethod}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Stripe ID</th>
-                                <td>stripe-id</td>
+                                <td>Nil</td>
                             </tr>
                             <tr>
                                 <th scope="row">Amount Paid</th>
-                                <td>$250.00</td>
+                                <td>${order?.totalAmount}</td>
                             </tr>
                         </tbody>
                     </table>
