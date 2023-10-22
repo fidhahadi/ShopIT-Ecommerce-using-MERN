@@ -1,7 +1,10 @@
 const Product = require('../models/product')
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
-const APIFilters = require('../utils/apiFilters')
+const APIFilters = require('../utils/apiFilters');
+const Order = require("../models/order")
+
+
 
 //create new product => /api/v1/product/new
 
@@ -178,5 +181,23 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
     res.status(200).json({
         success: true,
         product,
+    });
+});
+
+
+//Can user review => /api/v1/can_review
+exports.canUserReview = catchAsyncErrors(async (req, res, next) => {
+
+    const orders = await Order.find({
+        user: req.user._id,
+        "orderItems.product": req.query.productId,
+    })
+
+    if (orders.length === 0) {
+        return res.status(200).json({ canReview: false })
+    }
+
+    res.status(200).json({
+        canReview: true,
     });
 });
