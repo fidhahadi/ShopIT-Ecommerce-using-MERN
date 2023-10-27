@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AdminLayout from '../layouts/AdminLayout'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import SalesCharts from '../charts/SalesCharts';
+import SalesChart from '../charts/SalesChart';
 import { useLazyGetDashboardSalesQuery } from '../../redux/api/orderApi';
 import toast from 'react-hot-toast'
 import Loader from '../layouts/Loader'
@@ -21,11 +21,17 @@ const Dashboard = () => {
         if (error) {
             toast.error(error?.data?.message)
         }
+
+        if (startDate && endDate && !data) {
+            getDashboardSales({
+                startDate: new Date(startDate).toISOString(),
+                endDate: endDate.toISOString(),
+            })
+        }
     }, [error])
 
 
 
-    if (isLoading) return <Loader />
 
 
     const submitHandler = () => {
@@ -36,6 +42,7 @@ const Dashboard = () => {
     };
 
 
+    if (isLoading) return <Loader />
 
 
     return (
@@ -75,7 +82,7 @@ const Dashboard = () => {
                                 <div className="text-center card-font-size">
                                     Sales
                                     <br />
-                                    <b>$0.00</b>
+                                    <b>${data?.totalSales}</b>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +94,7 @@ const Dashboard = () => {
                                 <div className="text-center card-font-size">
                                     Orders
                                     <br />
-                                    <b>0</b>
+                                    <b>{data?.totalNumOrders}</b>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +102,7 @@ const Dashboard = () => {
                 </div>
 
 
-                <SalesCharts />
+                <SalesChart salesData={data?.sales} />
 
                 <div className="mb-5"></div>
             </AdminLayout>
