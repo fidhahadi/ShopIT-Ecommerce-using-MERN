@@ -35,7 +35,6 @@ const Home = () => {
         }
 
     }, [isError, error])
-    console.log(data);
 
     const columnSize = keyword ? 4 : 3;
 

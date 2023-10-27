@@ -3,7 +3,7 @@ const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const APIFilters = require('../utils/apiFilters');
 const Order = require("../models/order")
-
+const upload = require("../utils/cloudinary");
 
 
 //create new product => /api/v1/product/new
@@ -78,6 +78,31 @@ exports.updateProduct = catchAsyncErrors(async (req, res) => {
     product = await Product.findByIdAndUpdate(req?.params?.id, req.body, {
         new: true,
     });
+
+    res.status(200).json({
+        product,
+    });
+});
+
+
+
+
+//upload product images => /api/v1/admin/product/:id/upload_images
+
+exports.uploadProductImages = catchAsyncErrors(async (req, res) => {
+    let product = await Product.findById(req?.params?.id);
+
+
+    if (!product) {
+        return next(new ErrorHandler("Product not found", 404));
+    }
+
+    const uploader = async (image) => upload.upload_file(image, "shopIT");
+
+    const urls = await Promise.all((req?.body?.images)?.map(uploader));
+
+    product?.images?.push(...urls);
+    await product?.save();
 
     res.status(200).json({
         product,

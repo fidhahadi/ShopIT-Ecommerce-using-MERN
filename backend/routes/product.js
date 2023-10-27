@@ -12,7 +12,8 @@ const {
     getProductReviews,
     deleteReview,
     canUserReview,
-    getAdminProducts
+    getAdminProducts,
+    uploadProductImages
 } = require('../controllers/productController')
 
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
@@ -23,6 +24,12 @@ router
     .post(isAuthenticatedUser, authorizeRoles("admin"), newProduct);
 
 router.route("/products/:id").get(getProductDetails);
+
+
+router
+    .route("/admin/products/:id/upload_images")
+    .put(isAuthenticatedUser, authorizeRoles("admin"), uploadProductImages);
+
 
 router
     .route("/admin/products/:id")
