@@ -1,48 +1,75 @@
-import React, { useEffect } from 'react'
-import MetaData from '../layouts/MetaData'
-import { useOrderDetailsQuery } from '../../redux/api/orderApi'
-import { useParams } from 'react-router'
-import toast from 'react-hot-toast'
-import Loader from '../layouts/Loader'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import Loader from "../layouts/Loader";
 
-const OrderDetails = () => {
+import { Link, useParams } from "react-router-dom";
+import MetaData from "../layouts/MetaData";
 
-    const params = useParams()
-    const { data, isLoading, error } = useOrderDetailsQuery(params?.id);
+import AdminLayout from "../layouts/AdminLayout";
+import { useOrderDetailsQuery, useUpdateOrderMutation } from "../../redux/api/orderApi";
+import toast from "react-hot-toast";
+
+
+const ProcessOrder = () => {
+
+
+    const [status, setStatus] = useState("");
+    const params = useParams();
+
+    const { data } = useOrderDetailsQuery(params?.id);
     const order = data?.order || {};
-    console.log(data);
-    const { shippingInfo,
+
+    const [updateOrder, { error, isSuccess }] = useUpdateOrderMutation();
+
+
+    const {
+        shippingInfo,
         orderItems,
         paymentInfo,
         user,
-        totalPrice,
-        orderStatus
-    } = order
+        totalAmount,
+        orderStatus,
+    } = order;
 
-    const isPaid = paymentInfo?.status === "paid" ? true : false
+    const isPaid = paymentInfo?.status === "paid" ? true : false;
 
 
     useEffect(() => {
-        if (error) {
-            toast.error(error?.data?.message);
+        if (orderStatus) {
+            setStatus(orderStatus)
         }
-    }, [error])
 
-    if (isLoading) return <Loader />;
+    }, [orderStatus])
+
+
+    useEffect(() => {
+
+
+        if (error) {
+            toast.error(error?.data?.message)
+            console.log(error)
+        }
+        if (isSuccess) {
+            toast.success("Order Updated");
+        }
+    }, [error, isSuccess])
+
+
+    const updateOrderHandler = (id) => {
+
+        const data = {
+            status
+        };
+        updateOrder({ id, body: data })
+    }
 
 
     return (
-        <>
-            <MetaData title={"Order Details"} />
-            <div className="row d-flex justify-content-center">
-                <div className="col-12 col-lg-9 mt-5 order-details">
-                    <div className="d-flex justify-content-between align-items-center">
-                        <h3 className="mt-5 mb-4">Your Order Details</h3>
-                        <a className="btn btn-success" href="/invoice/order/order-id">
-                            <i className="fa fa-print"></i> Invoice
-                        </a>
-                    </div>
+        <AdminLayout>
+            <MetaData title={"Process Order"} />
+            <div className="row d-flex justify-content-around">
+                <div className="col-12 col-lg-8 order-details">
+                    <h3 className="mt-5 mb-4">Order Details</h3>
+
                     <table className="table table-striped table-bordered">
                         <tbody>
                             <tr>
@@ -50,7 +77,7 @@ const OrderDetails = () => {
                                 <td>{order?._id}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Status</th>
+                                <th scope="row">Order Status</th>
                                 <td
                                     className={
                                         String(orderStatus).includes("Delivered")
@@ -61,10 +88,6 @@ const OrderDetails = () => {
                                     <b>{orderStatus}</b>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">Date</th>
-                                <td>{new Date(order?.createdAt).toLocaleString("en-US")}</td>
-                            </tr>
                         </tbody>
                     </table>
 
@@ -73,15 +96,18 @@ const OrderDetails = () => {
                         <tbody>
                             <tr>
                                 <th scope="row">Name</th>
-                                <td>{order?.user?.name}</td>
+                                <td>{user?.name}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Phone No</th>
-                                <td>{order?.shippingInfo?.phoneNo}</td>
+                                <td>{shippingInfo?.phoneNo}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Address</th>
-                                <td>{order?.shippingInfo?.address}, {order?.shippingInfo?.city}, {order?.shippingInfo?.zipCode}, {order?.shippingInfo?.country}</td>
+                                <td>
+                                    {shippingInfo?.address}, {shippingInfo?.city},{" "}
+                                    {shippingInfo?.zipCode}, {shippingInfo?.country}
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -92,7 +118,7 @@ const OrderDetails = () => {
                             <tr>
                                 <th scope="row">Status</th>
                                 <td className={isPaid ? "greenColor" : "redColor"}>
-                                    <b>{order?.paymentInfo?.status}</b>
+                                    <b>{paymentInfo?.status}</b>
                                 </td>
                             </tr>
                             <tr>
@@ -101,11 +127,11 @@ const OrderDetails = () => {
                             </tr>
                             <tr>
                                 <th scope="row">Stripe ID</th>
-                                <td>Nil</td>
+                                <td>{paymentInfo?.id || "Nill"}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Amount Paid</th>
-                                <td>${order?.totalAmount}</td>
+                                <td>${totalAmount}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -130,22 +156,52 @@ const OrderDetails = () => {
                                 </div>
 
                                 <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                                    <p>{item?.price}</p>
+                                    <p>${item?.price}</p>
                                 </div>
 
                                 <div className="col-4 col-lg-3 mt-4 mt-lg-0">
-                                    <p>{item?.quantity}</p>
+                                    <p>{item?.quantity} Piece(s)</p>
                                 </div>
                             </div>
-
                         ))}
                     </div>
                     <hr />
                 </div>
+
+                <div className="col-12 col-lg-3 mt-5">
+                    <h4 className="my-4">Status</h4>
+
+                    <div className="mb-3">
+                        <select
+                            className="form-select"
+                            name="status"
+                            value={status}
+                            onChange={(e) => setStatus(e.target.value)}
+                        >
+                            <option value="Processing">Processing</option>
+                            <option value="Shipped">Shipped</option>
+                            <option value="Delivered">Delivered</option>
+                        </select>
+                    </div>
+
+                    <button
+                        className="btn btn-primary w-100"
+                        onClick={() => updateOrderHandler(order?._id)}
+                    >
+                        Update Status
+                    </button>
+
+                    <h4 className="mt-5 mb-3">Order Invoice</h4>
+                    <Link
+                        to={`/invoice/order/${order?._id}`}
+                        className="btn btn-success w-100"
+                    >
+                        <i className="fa fa-print"></i> Generate Invoice
+                    </Link>
+                </div>
             </div>
+        </AdminLayout>
+    );
+};
 
-        </>
-    )
-}
-
-export default OrderDetails
+export default ProcessOrder;
