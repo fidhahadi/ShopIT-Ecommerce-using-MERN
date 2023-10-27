@@ -5,26 +5,37 @@ import { MDBDataTable } from 'mdbreact'
 import { Link } from 'react-router-dom'
 import MetaData from '../layouts/MetaData'
 
-import { useGetAdminProductsQuery } from '../../redux/api/productsApi'
+import { useDeleteProductMutation, useGetAdminProductsQuery } from '../../redux/api/productsApi'
 import AdminLayout from '../layouts/AdminLayout'
 
 const ListProducts = () => {
 
 
-    const { data, isLoading, error, isSuccess } = useGetAdminProductsQuery()
+    const { data, isLoading, error } = useGetAdminProductsQuery()
 
-    console.log(data);
 
+    const [deleteProduct, { isLoading: isDeleteLoading, error: deleteError, isSuccess }] = useDeleteProductMutation();
 
 
     useEffect(() => {
         if (error) {
             toast.error(error?.data?.message);
         }
-    }, [error])
+        if (deleteError) {
+            toast.error(deleteError?.data?.message)
+            console.log(deleteError);
+        }
+        if (isSuccess) {
+            toast.success("Product deleted")
+        }
+
+    }, [error, deleteError, isSuccess])
+
+    const deleteProductHandler = (id) => {
+        deleteProduct(id);
+    }
 
 
-    if (isLoading) return <Loader />
 
     const setProducts = () => {
         const products = {
@@ -68,8 +79,12 @@ const ListProducts = () => {
                     </Link>
 
 
-                    <button className='btn btn-outline-success ms-2' >
-                        <i className='fa fa-trash'></i>
+                    <button
+                        className="btn btn-outline-danger ms-2"
+                        onClick={() => deleteProductHandler(product?._id)}
+                        disabled={isDeleteLoading}
+                    >
+                        <i className="fa fa-trash"></i>
                     </button>
 
                 </>

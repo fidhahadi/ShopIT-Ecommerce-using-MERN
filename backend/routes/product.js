@@ -40,7 +40,7 @@ router
     .route("/admin/products/:id")
     .put(isAuthenticatedUser, authorizeRoles("admin"), updateProduct);
 router
-    .route("/admin/products/:id")
+    .route("/admin/product/:id")
     .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteProduct);
 
 router
