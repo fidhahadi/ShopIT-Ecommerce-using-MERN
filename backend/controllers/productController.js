@@ -4,7 +4,7 @@ const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const APIFilters = require('../utils/apiFilters');
 const Order = require("../models/order")
 const upload = require("../utils/cloudinary");
-
+const delete_f = require("../utils/cloudinary");
 
 //create new product => /api/v1/product/new
 
@@ -17,7 +17,6 @@ exports.newProduct = catchAsyncErrors(async (req, res) => {
         product,
     });
 });
-
 
 //Get all products => /api/v1/products
 
@@ -108,6 +107,34 @@ exports.uploadProductImages = catchAsyncErrors(async (req, res) => {
         product,
     });
 });
+
+
+//delete product images => /api/v1/admin/product/:id/delete_image
+
+exports.deleteProductImage = catchAsyncErrors(async (req, res) => {
+    let product = await Product.findById(req?.params?.id);
+
+
+    if (!product) {
+        return next(new ErrorHandler("Product not found", 404));
+    }
+
+    const isDeleted = await delete_f.delete_file(req?.body?.imgId)
+
+    if (isDeleted) {
+        product.images = product?.images?.filter(
+            (img) => img?.public_id !== req?.body?.imgId
+        );
+        await product?.save();
+    }
+
+    res.status(200).json({
+        product,
+    });
+});
+
+
+
 
 //delete  product => /api/v1/admin/product/:id
 
@@ -240,4 +267,4 @@ exports.canUserReview = catchAsyncErrors(async (req, res, next) => {
     res.status(200).json({
         canReview: true,
     });
-});
+})

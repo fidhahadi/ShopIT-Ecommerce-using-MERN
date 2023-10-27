@@ -5,6 +5,7 @@ import MetaData from "../layouts/MetaData";
 import AdminLayout from "../layouts/AdminLayout";
 import { useNavigate, useParams } from "react-router-dom";
 import {
+    useDeleteProductImageMutation,
     useGetProductDetailsQuery,
     useUploadProductImagesMutation,
 } from "../../redux/api/productsApi";
@@ -21,7 +22,7 @@ const UploadImages = () => {
     const [uploadProductImages, { isLoading, error, isSuccess }] =
         useUploadProductImagesMutation();
 
-
+    const [deleteProductImage, { isLoading: isDeleteLoading, error: deleteError }] = useDeleteProductImageMutation();
 
     const { data } = useGetProductDetailsQuery(params?.id);
 
@@ -40,7 +41,11 @@ const UploadImages = () => {
             toast.success("Images Uploaded");
             navigate("/admin/products");
         }
-    }, [data, error, isSuccess]);
+
+        if (deleteError) {
+            toast.error(deleteError?.data?.message)
+        }
+    }, [data, error, isSuccess, deleteError]);
 
     const onChange = (e) => {
         const files = Array.from(e.target.files);
@@ -78,7 +83,9 @@ const UploadImages = () => {
         uploadProductImages({ id: params?.id, body: { images } });
     };
 
-
+    const deleteImage = (imgId) => {
+        deleteProductImage({ id: params.id, body: { imgId } })
+    }
 
     return (
         <AdminLayout>
@@ -161,7 +168,8 @@ const UploadImages = () => {
                                                         }}
                                                         className="btn btn-block btn-danger cross-button mt-1 py-0"
                                                         type="button"
-                                                        disabled={isLoading}
+                                                        disabled={isLoading || isDeleteLoading}
+                                                        onClick={() => deleteImage(img?.public_id)}
 
                                                     >
                                                         <i className="fa fa-trash"></i>
