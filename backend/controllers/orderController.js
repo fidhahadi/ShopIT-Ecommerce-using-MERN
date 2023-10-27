@@ -140,7 +140,7 @@ exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
 async function getSalesData(startDate, endDate) {
     const salesData = await Order.aggregate([
         {
-            //Stage 1 - Filter results
+            // Stage 1 - Filter results
             $match: {
                 createdAt: {
                     $gte: new Date(startDate),
@@ -149,38 +149,35 @@ async function getSalesData(startDate, endDate) {
             },
         },
         {
-            //Stage 2 - Group Data
+            // Stage 2 - Group Data
             $group: {
                 _id: {
-                    date: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } }
+                    date: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
                 },
                 totalSales: { $sum: "$totalAmount" },
-                numOrder: { $sum: 1 }//count the number of orders
+                numOrders: { $sum: 1 }, // count the number of orders
             },
         },
-
     ]);
-    console.log(salesData);
 
-    //Create a map to store sales data and num of orders by date
-
-
-    const salesMap = new Map()
-    let totalSales = 0
-    let totalNumOrders = 0
+    // Create a Map to store sales data and num of order by data
+    const salesMap = new Map();
+    let totalSales = 0;
+    let totalNumOrders = 0;
 
     salesData.forEach((entry) => {
-
         const date = entry?._id.date;
         const sales = entry?.totalSales;
         const numOrders = entry?.numOrders;
 
-        salesMap.map(date, { sales, numOrders });
+        salesMap.set(date, { sales, numOrders });
         totalSales += sales;
         totalNumOrders += numOrders;
     });
 
-    const datesBetween = getDateBetween(startDate, endDate);
+    // Generate an array of dates between start & end Date
+    const datesBetween = getDatesBetween(startDate, endDate);
+
     // Create final sales data array with 0 for dates without sales
     const finalSalesData = datesBetween.map((date) => ({
         date,
@@ -189,37 +186,30 @@ async function getSalesData(startDate, endDate) {
     }));
 
     return { salesData: finalSalesData, totalSales, totalNumOrders };
-
 }
-//Generate an array of dates btw start and end dates
 
-
-function getDateBetween(startDate, endDate) {
+function getDatesBetween(startDate, endDate) {
     const dates = [];
-    let currentDate = new Date(startDate)
+    let currentDate = new Date(startDate);
 
     while (currentDate <= new Date(endDate)) {
-        const formattedDate = currentDate.toISOString().split("Y")[0];
-        dates.push(formattedDate)
-        currentDate.setDate(currentDate.getDate() + 1)
+        const formattedDate = currentDate.toISOString().split("T")[0];
+        dates.push(formattedDate);
+        currentDate.setDate(currentDate.getDate() + 1);
     }
-    return dates;
 
+    return dates;
 }
 
-
-
-
-
-
-// Get sales data  => /api/v1/admin/sales
-
+// Get Sales Data  =>  /api/v1/admin/get_sales
 exports.getSales = catchAsyncErrors(async (req, res, next) => {
     const startDate = new Date(req.query.startDate);
     const endDate = new Date(req.query.endDate);
 
     startDate.setUTCHours(0, 0, 0, 0);
     endDate.setUTCHours(23, 59, 59, 999);
+
+    getSalesData(startDate, endDate);
 
     const { salesData, totalSales, totalNumOrders } = await getSalesData(
         startDate,

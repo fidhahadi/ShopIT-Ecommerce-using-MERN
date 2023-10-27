@@ -1,19 +1,42 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AdminLayout from '../layouts/AdminLayout'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import SalesCharts, { SalesChart } from '../charts/SalesCharts';
-
+import SalesCharts from '../charts/SalesCharts';
+import { useLazyGetDashboardSalesQuery } from '../../redux/api/orderApi';
+import toast from 'react-hot-toast'
+import Loader from '../layouts/Loader'
 
 const Dashboard = () => {
 
     const [startDate, setStartDate] = useState(new Date().setDate(1));
     const [endDate, setEndDate] = useState(new Date());
 
+
+    const [getDashboardSales, { data, error, isLoading }] = useLazyGetDashboardSalesQuery();
+
+    console.log(data);
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error?.data?.message)
+        }
+    }, [error])
+
+
+
+    if (isLoading) return <Loader />
+
+
     const submitHandler = () => {
-        console.log(new Date(startDate).toISOString);
-        console.log(new Date(endDate).toISOString);
-    }
+        getDashboardSales({
+            startDate: new Date(startDate).toISOString(),
+            endDate: endDate.toISOString(),
+        });
+    };
+
+
+
 
     return (
         <>
