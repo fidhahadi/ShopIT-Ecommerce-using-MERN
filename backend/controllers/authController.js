@@ -9,7 +9,7 @@ const crypto = require('crypto');
 const { upload_file, delete_file } = require('../utils/cloudinary');
 
 const { getResetPasswordTemplate } = require("../utils/emailTemplates.js");
-
+const delete_f = require("../utils/cloudinary")
 
 //register a user => /api/v1/register
 
@@ -296,6 +296,10 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
     }
 
     //remove avatar from clouidnary :TODO
+
+    if (user?.avatar?.public_id) {
+        await delete_f.delete_file(user?.avatar?.public_id);
+    }
 
     await user.deleteOne();
 
