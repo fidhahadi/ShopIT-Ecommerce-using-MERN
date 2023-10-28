@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AdminLayout from '../layouts/AdminLayout'
 import MetaData from '../layouts/MetaData'
 import { MDBDataTable } from 'mdbreact';
-import { useLazyGetProductReviewsQuery } from '../../redux/api/productsApi';
+import { useDeleteReviewMutation, useLazyGetProductReviewsQuery } from '../../redux/api/productsApi';
 import toast from 'react-hot-toast';
 
 const ProductReviews = () => {
@@ -10,19 +10,32 @@ const ProductReviews = () => {
     const [productId, setProductId] = useState("");
 
     const [getProductReviews, { isLoading, data, error }] = useLazyGetProductReviewsQuery();
-    console.log(data);
+
+
+    const [deleteReview, { error: deleteError, isLoading: isDeleteLoading, isSuccess }] = useDeleteReviewMutation();
+
 
     useEffect(() => {
         if (error) {
             toast.error(error?.data?.message);
         }
+        if (deleteError) {
+            toast.error(error?.data?.message)
+        }
+        if (isSuccess) {
+            toast.success("Review deleted");
+        }
 
-    }, [error])
+    }, [error, deleteError, isSuccess])
 
 
     const submitHandler = (e) => {
         e.preventDefault();
         getProductReviews(productId);
+    }
+
+    const deleteReviewHandler = (id) => {
+        deleteReview({ productId, id })
     }
 
     const setReviews = () => {
@@ -67,8 +80,8 @@ const ProductReviews = () => {
                 actions: <>
                     <button
                         className="btn btn-outline-danger ms-2"
-                    // onClick={() => deletereviewHandler(user?._id)}
-                    // disabled={isDeleteLoading}
+                        onClick={() => deleteReviewHandler(review?._id)}
+                        disabled={isDeleteLoading}
                     >
                         <i className="fa fa-trash"></i>
                     </button>
@@ -104,6 +117,7 @@ const ProductReviews = () => {
                                 id="search_button"
                                 type="submit"
                                 className="btn btn-primary w-100 py-2"
+
                             >
                                 SEARCH
                             </button>
