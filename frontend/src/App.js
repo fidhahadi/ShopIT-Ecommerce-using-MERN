@@ -9,6 +9,7 @@ import { Toaster } from 'react-hot-toast'
 import useUserRoutes from './components/routes/userRoutes';
 import useAdminRoutes from './components/routes/adminRoutes'
 import adminRoutes from './components/routes/adminRoutes';
+import NotFound from './components/layouts/NotFound';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Routes>
             {userRoutes}
             {adminRoutes}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
 
