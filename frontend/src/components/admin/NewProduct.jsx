@@ -31,7 +31,7 @@ const NewProduct = () => {
             toast.success("New product added");
             navigate('/admin/products');
         }
-    }, [error, isSuccess])
+    }, [error, isSuccess, navigate])
 
     const { name, description, price, category, stock, seller } = product;
 

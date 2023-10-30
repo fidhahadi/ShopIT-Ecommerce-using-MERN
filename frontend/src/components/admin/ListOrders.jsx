@@ -26,7 +26,7 @@ const ListOrders = () => {
             toast.success("Order deleted")
         }
 
-    }, [error])
+    }, [error, deleteError, isSuccess])
 
     const deleteOrderHandler = (id) => {
         deleteOrder(id);

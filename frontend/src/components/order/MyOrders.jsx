@@ -18,7 +18,7 @@ const MyOrders = () => {
 
     const orderSuccess = searchParams.get("order_success");
 
-    const { data, isLoading, error, isSuccess } = useMyOrdersQuery()
+    const { data, isLoading, error } = useMyOrdersQuery()
 
     console.log(data);
 
@@ -32,7 +32,7 @@ const MyOrders = () => {
             dispatch(clearCart());
             navigate("/me/orders");
         }
-    }, [error, orderSuccess])
+    }, [error, orderSuccess, dispatch, navigate])
 
 
     if (isLoading) return <Loader />

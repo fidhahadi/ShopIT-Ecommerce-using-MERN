@@ -27,7 +27,7 @@ const PaymentMethod = () => {
         if (checkoutError) {
             toast.error(checkoutError?.data?.message);
         }
-    }, [checkoutdata, checkoutError])
+    }, [checkoutdata, checkoutError, navigate])
 
     useEffect(() => {
         if (error) {
@@ -36,7 +36,7 @@ const PaymentMethod = () => {
         if (isSuccess) {
             navigate("/me/orders?order_success=true");
         }
-    }, [error, isSuccess])
+    }, [error, isSuccess, navigate])
 
     const submitHandler = (e) => {
         e.preventDefault();

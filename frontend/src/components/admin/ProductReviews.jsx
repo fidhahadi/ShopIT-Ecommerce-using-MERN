@@ -9,7 +9,7 @@ const ProductReviews = () => {
 
     const [productId, setProductId] = useState("");
 
-    const [getProductReviews, { isLoading, data, error }] = useLazyGetProductReviewsQuery();
+    const [getProductReviews, { data, error }] = useLazyGetProductReviewsQuery();
 
 
     const [deleteReview, { error: deleteError, isLoading: isDeleteLoading, isSuccess }] = useDeleteReviewMutation();

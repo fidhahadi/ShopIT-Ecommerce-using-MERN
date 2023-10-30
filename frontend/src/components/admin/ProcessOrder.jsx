@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Loader from "../layouts/Loader";
+//import Loader from "../layouts/Loader";
 
 import { Link, useParams } from "react-router-dom";
 import MetaData from "../layouts/MetaData";

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import toast from 'react-hot-toast'
-import Loader from '../layouts/Loader'
+//import Loader from '../layouts/Loader'
 import { MDBDataTable } from 'mdbreact'
 import { Link } from 'react-router-dom'
 import MetaData from '../layouts/MetaData'
@@ -11,7 +11,7 @@ import AdminLayout from '../layouts/AdminLayout'
 const ListProducts = () => {
 
 
-    const { data, isLoading, error } = useGetAdminProductsQuery()
+    const { data, error } = useGetAdminProductsQuery()
 
 
     const [deleteProduct, { isLoading: isDeleteLoading, error: deleteError, isSuccess }] = useDeleteProductMutation();

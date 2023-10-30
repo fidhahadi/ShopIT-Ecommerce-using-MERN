@@ -11,7 +11,7 @@ const NewReview = ({ productId }) => {
     const [comment, setComment] = useState("");
 
 
-    const [submitReview, { isLoading, error, isSuccess }] = useSubmitReviewMutation();
+    const [submitReview, { error, isSuccess }] = useSubmitReviewMutation();
 
 
     const { data } = useCanUserReviewQuery(productId);

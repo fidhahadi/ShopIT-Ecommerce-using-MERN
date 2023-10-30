@@ -12,11 +12,9 @@ const OrderDetails = () => {
     const { data, isLoading, error } = useOrderDetailsQuery(params?.id);
     const order = data?.order || {};
     console.log(data);
-    const { shippingInfo,
+    const {
         orderItems,
         paymentInfo,
-        user,
-        totalPrice,
         orderStatus
     } = order
 

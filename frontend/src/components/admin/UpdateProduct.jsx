@@ -51,7 +51,7 @@ const UpdateProduct = () => {
             toast.success("Product updated");
             navigate('/admin/products');
         }
-    }, [error, isSuccess, data])
+    }, [error, isSuccess, data, navigate])
 
     const { name, description, price, category, stock, seller } = product;
 

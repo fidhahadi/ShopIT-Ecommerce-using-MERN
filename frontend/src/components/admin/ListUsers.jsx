@@ -12,7 +12,7 @@ const ListUsers = () => {
 
     // const [deleteOrder, { error: deleteError, isSuccess, isLoading: isDeleteLoading }] = useDeleteOrderMutation();
 
-    const { data, isLoading, error } = useGetAdminUsersQuery();
+    const { data, error } = useGetAdminUsersQuery();
 
     const [deleteUser, { error: deleteError, isLoading: isDeleteLoading, isSuccess }] = useDeleteUserMutation();
 

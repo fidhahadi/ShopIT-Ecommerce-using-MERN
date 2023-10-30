@@ -18,9 +18,7 @@ const Invoice = () => {
     const { shippingInfo,
         orderItems,
         paymentInfo,
-        user,
-        totalPrice,
-        orderStatus
+        user
     } = order
 
 

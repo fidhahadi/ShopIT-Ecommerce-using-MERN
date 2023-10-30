@@ -20,7 +20,7 @@ const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1);
     const [activeImg, setActiveImg] = useState("");
 
-    const { data, isLoading, error, isError } = useGetProductDetailsQuery(
+    const { data, isLoading, error } = useGetProductDetailsQuery(
         params?.id
     );
     const product = data?.product;
@@ -34,10 +34,10 @@ const ProductDetails = () => {
     }, [product]);
 
     useEffect(() => {
-        if (isError) {
+        if (error) {
             toast.error(error?.data?.message);
         }
-    }, [isError]);
+    }, [error]);
 
     const increseQty = () => {
         const count = document.querySelector(".count");
@@ -94,7 +94,7 @@ const ProductDetails = () => {
                     <div className="row justify-content-start mt-5">
                         {product?.images?.map((img) => (
                             <div className="col-2 ms-4 mt-2">
-                                <button role="button" className="button-property">
+                                <button className="button-property">
                                     <img
                                         className={`d-block border rounded p-3 cursor-pointer ${img.url === activeImg ? "border-warning" : ""
                                             } `}

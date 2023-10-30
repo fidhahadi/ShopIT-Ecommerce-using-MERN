@@ -28,7 +28,7 @@ const Dashboard = () => {
                 endDate: endDate.toISOString(),
             })
         }
-    }, [error])
+    }, [error, data, endDate, startDate, getDashboardSales])
 
 
 
