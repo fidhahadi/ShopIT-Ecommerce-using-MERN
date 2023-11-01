@@ -1,0 +1,286 @@
+export default [
+    {
+        "name": "SanDisk Ultra 128GB SDXC UHS-I Memory Card up to 80MB/s",
+        "price": "45.89",
+        "description": "Ultra-fast cards (2) to take better pictures and Full HD videos (1) with your compact to mid-range point-and-shoot cameras and camcorders. With SanDisk Ultra SDXC UHS-I cards you’ll benefit from faster downloads, high capacity, and better performance to capture and store 128GB (5) of high quality pictures and Full HD video (1). Take advantage of ultra-fast read speeds of up to 80MB/s (3) to save time moving photos and videos from the card to your computer. From a leader in flash memory storage, SanDisk Ultra SDXC UHS-I cards are compatible with SDHC and SDXC digital devices, and come with a 10-year limited warranty (6).",
+        "ratings": 4.5,
+        "images": [{
+            "public_id": "shopIT/sd1_gqxiza",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112808/shopIT/sd1_gqxiza.jpg"
+        },
+        {
+            "public_id": "shopIT/sd3_r0alhn",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112814/shopIT/sd3_r0alhn.jpg"
+        },
+        {
+            "public_id": "shopIT/sd2_xrdlxs",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112813/shopIT/sd2_xrdlxs.jpg"
+        }
+        ],
+        "category": "Electronics",
+        "seller": "Ebay",
+        "stock": 50,
+        "numOfReviews": 32,
+        "reviews": []
+    },
+    {
+        "name": "CAN USB FD Adapter (GC-CAN-USB-FD)",
+        "price": "315.00",
+        "description": "Monitor a CAN network, write a CAN program and communicate with industrial, medical, automotive or other CAN based device. Connect CAN FD and CAN networks to a computer via USB with the CAN USB FD adapter.",
+        "ratings": 1.65,
+        "images": [{
+            "public_id": "shopIT/ad1_wwmnxk",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112807/shopIT/ad1_wwmnxk.jpg"
+        },
+        {
+            "public_id": "shopIT/ad2_lcvw1w",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112808/shopIT/ad2_lcvw1w.jpg"
+        },
+        {
+            "public_id": "shopIT/ad3_xmpexb",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112807/shopIT/ad3_xmpexb.jpg"
+        }
+        ],
+        "category": "Electronics",
+        "seller": "Amazon",
+        "stock": 0,
+        "numOfReviews": 2,
+        "reviews": []
+    },
+    {
+        "name": "CHARMOUNT Full Motion TV Wall Mount Swivel",
+        "price": "26.99 ",
+        "description": "CHARMOUNT TV MOUNT UNIVERSAL DESIGN - Has your TV been received? Tilted TV wall mount is for 26 - 55 TVs weight up to 88lbs 40 kg. Our tilt TV mount has a compatible faceplate that fits VESA 75X75mm (3x3). CHARMOUNT TV MOUNT UNIVERSAL DESIGN - Has your TV been received? Tilted TV wall mount is for 26 - 55 TVs weight up to 88lbs 40 kg. Our tilt TV mount has a compatible faceplate that fits VESA 75X75mm (3x3) CHARMOUNT TV MOUNT UNIVERSAL DESIGN - Has your TV been received? Tilted TV wall mount is for 26 - 55 TVs weight up to 88lbs 40 kg. Our tilt TV mount has a compatible faceplate that fits VESA 75X75mm (3x3).",
+        "ratings": 3.5,
+        "images": [{
+            "public_id": "shopIT/cr1_dj7fmk",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112806/shopIT/cr1_dj7fmk.jpg"
+        },
+        {
+            "public_id": "shopIT/cr2_ca5ytv",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112806/shopIT/cr2_ca5ytv.jpg"
+        },
+        {
+            "public_id": "shopIT/cr3_qifmrr",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112803/shopIT/cr3_qifmrr.jpg"
+        }],
+        "category": "Electronics",
+        "seller": "Amazon",
+        "stock": 1,
+        "numOfReviews": 12,
+        "reviews": []
+    },
+    {
+        "name": "Bose QuietComfort 35 II Wireless Bluetooth Headphones",
+        "price": "299.00 ",
+        "description": "What happens when you clear away the noisy distractions of the world? Concentration goes to the next level. You get deeper into your music, your work, or whatever you want to focus on. That’s the power of Bose QuietComfort 35 wireless headphones II. Put them on and get closer to what you’re most passionate about. And that’s just the beginning. QuietComfort 35 wireless headphones II are now enabled with Bose AR",
+        "ratings": 4.5,
+        "images": [{
+            "public_id": "shopIT/bs1_rxzu5i",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112802/shopIT/bs1_rxzu5i.jpg"
+        },
+        {
+            "public_id": "shopIT/bs2_t8ehrz",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112802/shopIT/bs2_t8ehrz.jpg"
+        },
+        {
+            "public_id": "shopIT/bs3_l8h9xs",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112801/shopIT/bs3_l8h9xs.jpg"
+        }],
+        "category": "Headphones",
+        "seller": "Amazon",
+        "stock": 11,
+        "numOfReviews": 112,
+        "reviews": []
+    },
+    {
+        "name": "Apple AirPods with Charging Case (Wired)",
+        "price": "126.99 ",
+        "description": "AirPods with Charging Case: More than 24 hours listening time, up to 18 hours talk time; AirPods (single charge): Up to 5 hours listening time, up to 3 hours talk time or 15 minutes in the case equals up to 3 hours listening time or up to 2 hours talk time.",
+        "ratings": 4.8,
+        "images": [{
+            "public_id": "shopIT/ap3_nzx6xn",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112796/shopIT/ap3_nzx6xn.jpg"
+        },
+        {
+            "public_id": "shopIT/ap2_svxeax",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112797/shopIT/ap2_svxeax.jpg"
+        },
+        {
+            "public_id": "shopIT/ap1_y2qc8l",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112799/shopIT/ap1_y2qc8l.jpg"
+        }],
+        "category": "Electronics",
+        "seller": "Amazon",
+        "stock": 122,
+        "numOfReviews": 2671,
+        "reviews": []
+    },
+    {
+        "name": "Cable Boom Microphone - Volume Control for Playstation PS4 or Xbox",
+        "price": "27.99",
+        "description": "DESIGN INFO - 3.5mm male to 2.5mm male audio cable adapter with Upgraded Flexible, Detachable Boom Mic which also enables rotary Volume Control and Mute Switch. SteelFlex Arm for perfect microphone positioning. INPUT COMPATIBILITY - Devices supporting 3.5mm audio output such as gaming PS4 / Xbox One controller, PC, Laptop, iPhone and Android Phone.",
+        "ratings": 4.1,
+        "images": [{
+            "public_id": "shopIT/cb1_vlsgch",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112796/shopIT/cb1_vlsgch.jpg"
+        },
+        {
+            "public_id": "shopIT/cb2_g4nztp",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112795/shopIT/cb2_g4nztp.jpg"
+        },
+        {
+            "public_id": "shopIT/cb3_k6octp",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112793/shopIT/cb3_k6octp.jpg"
+        }],
+        "category": "Accessories",
+        "seller": "Amazon",
+        "stock": 1123,
+        "numOfReviews": 6,
+        "reviews": []
+    },
+    {
+        "name": "Nikon D3500 W/ AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR Black ",
+        "price": "496.95",
+        "description": "You don't need to be a photographer to know a great photo when you see one. And you don't need to be a photographer to take a great photo—you just need the D3500. It's as easy to use as a point-and-shoot, but it takes beautiful DSLR photos and videos that get noticed. It feels outstanding in your hands, sturdy and balanced with controls where you want them. It's compact, durable and versatile, ideal for travel. And it works seamlessly with compatible smartphones, making it easier than ever to share your great photos. Even if you've never picked up a DSLR camera, you can take beautiful pictures with D3500.",
+        "ratings": 4.7,
+        "images": [
+            {
+                "public_id": "shopIT/nk1_lg0jss",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112792/shopIT/nk1_lg0jss.jpg"
+            },
+            {
+                "public_id": "shopIT/nk2_htdf1q",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112792/shopIT/nk2_htdf1q.jpg"
+            },
+
+            {
+                "public_id": "shopIT/nk3_ohqng7",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112791/shopIT/nk3_ohqng7.jpg"
+            }],
+        "category": "Cameras",
+        "seller": "Amazon",
+        "stock": 131,
+        "numOfReviews": 222,
+        "reviews": []
+    },
+    {
+        "name": "Apple MacBook Air (13-inch, 8GB RAM, 256GB SSD Storage) - Space Gray ",
+        "price": "949.99",
+        "description": "Stunning 13.3-inch Retina display with True Tone technology, Backlit Magic Keyboard and Touch ID, Tenth-generation, Intel Core i3 processor, Intel Iris Plus Graphics, Fast SSD storage, 8GB of memory, Stereo speakers with wider stereo sound",
+        "ratings": 4.9,
+        "images": [{
+            "public_id": "shopIT/mc1_ryove9",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112791/shopIT/mc1_ryove9.jpg"
+        },
+        {
+            "public_id": "shopIT/mc2_mqmwcv",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112788/shopIT/mc2_mqmwcv.jpg"
+        },
+        {
+            "public_id": "shopIT/mc3_uxyzng",
+            "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112788/shopIT/mc3_uxyzng.jpg"
+        }],
+        "category": "Laptops",
+        "seller": "Amazon",
+        "stock": 0,
+        "numOfReviews": 56,
+        "reviews": []
+    },
+    {
+        "name": "Kauffman Orchards Homegrown McIntosh Apples",
+        "price": "2.75",
+        "description": "McIntosh is a pretty red/green apple with white flesh Homegrown in Kauffman's orchard in healthy Lancaster County soil McIntosh apples are famous for snacking, pies, salads, and applesauce Protected with soft, high-density foam for safe shipping to your door Not for sale to California, Oregon, or Washington due to state laws governing fresh produce",
+        "ratings": 5,
+        "images": [
+            {
+                "public_id": "shopIT/apple3_egkvzc",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112787/shopIT/apple3_egkvzc.jpg"
+            },
+            {
+                "public_id": "shopIT/apple2_kycl3b",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112787/shopIT/apple2_kycl3b.jpg"
+            },
+            {
+                "public_id": "shopIT/apple_k4ckby",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697112788/shopIT/apple_k4ckby.jpg"
+            }
+        ],
+        "category": "Food",
+        "seller": "Kauffman's Fruit Farm & Market",
+        "stock": 500,
+        "numOfReviews": 1,
+        "reviews": []
+    },
+    {
+        "name": "Fire-Boltt Ninja Call Pro Plus 1.83Smart Watch with Bluetooth Calling, AI Voice Assistance, 100 Sports Modes IP67 Rating, 240 * 280 Pixel High Resolution",
+        "price": "124",
+        "description": "1.83 HD Display Smart Watch】- The 46.48mm (1.83-inch) HD display makes the display clear and true-to-life, with vivid colours ensuring smooth readability and keeping the watch as exquisite to look at as when you first lay your eyes on it. The watch has a 280 NITS Peak Brightness",
+        "ratings": 4.7,
+        "images": [
+            {
+                "public_id": "shopIT/fire1_vzikfx",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697122542/shopIT/fire1_vzikfx.jpg"
+            },
+            {
+                "public_id": "shopIT/fire2_evgz3u",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697122541/shopIT/fire2_evgz3u.jpg"
+            },
+            {
+                "public_id": "shopIT/fire3_jx28k5",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697122541/shopIT/fire3_jx28k5.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Firebolt",
+        "stock": 50,
+        "numOfReviews": 45,
+        "reviews": []
+    },
+    {
+        "name": "Lavie Women's Horse Bag | Ladies Purse Handbag",
+        "price": "30",
+        "description": "Looking for a stylish and functional handbag to keep all your essentials in place? Look no further than the Betula small tote! With its top zip closure, this bag will keep your belongings secure no matter where your day takes you",
+        "ratings": 3.7,
+        "images": [
+            {
+                "public_id": "shopIT/lav1_qewwoe",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697123016/shopIT/lav1_qewwoe.jpg"
+            },
+            {
+                "public_id": "shopIT/lav3_qwqi2m",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697123016/shopIT/lav3_qwqi2m.jpg"
+            },
+            {
+                "public_id": "shopIT/lav2_m1orc9",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697123017/shopIT/lav2_m1orc9.jpg"
+            }
+        ],
+        "category": "Accessories",
+        "seller": "Lavie",
+        "stock": 50,
+        "numOfReviews": 56,
+        "reviews": []
+    },
+    {
+        "name": "Do It Today: Overcome procrastination, improve productivity and achieve more meaningful things [Paperback] Foroux, Darius",
+        "price": "5.78",
+        "description": "The book is about what to do today",
+        "ratings": 4.5,
+        "images": [
+            {
+                "public_id": "shopIT/bk1_eh8z4l",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697123016/shopIT/bk1_eh8z4l.jpg"
+            },
+            {
+                "public_id": "shopIT/bk2_s7mgux",
+                "url": "https://res.cloudinary.com/shopit-fidha/image/upload/v1697123016/shopIT/bk2_s7mgux.jpg"
+            }
+        ],
+        "category": "Books",
+        "seller": "Kauffman's Fruit Farm & Market",
+        "stock": 500,
+        "numOfReviews": 1,
+        "reviews": []
+    }
+]
