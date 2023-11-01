@@ -1,14 +1,11 @@
-const Order = require('../models/order');
-const Product = require('../models/product');
-//const User = require('../models/user');
-
-const ErrorHandler = require('../utils/errorHandler');
-const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
-
+import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
+import Product from "../models/product.js";
+import Order from "../models/order.js";
+import ErrorHandler from "../utils/errorHandler.js";
 
 //Create a new order = /api/v1/orders/new
 
-exports.newOrder = catchAsyncErrors(async (req, res, next) => {
+export const newOrder = catchAsyncErrors(async (req, res, next) => {
     const {
         orderItems,
         shippingInfo,
@@ -38,7 +35,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
 });
 // Get single order by id => /api/v1/order/:id
 
-exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
+export const getOrderDetails = catchAsyncErrors(async (req, res, next) => {
     const order = await Order.findById(req.params.id).populate('user', 'name email')
 
     if (!order) {
@@ -54,7 +51,7 @@ exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
 //Get logged in user orders => /api/v1/orders/me
 
 
-exports.myOrders = catchAsyncErrors(async (req, res, next) => {
+export const myOrders = catchAsyncErrors(async (req, res, next) => {
     const orders = await Order.find({ user: req.user.id })
 
     res.status(200).json({
@@ -65,7 +62,7 @@ exports.myOrders = catchAsyncErrors(async (req, res, next) => {
 
 //Get all the orders by different users by admin => /api/v1/admin/orders
 
-exports.allOrders = catchAsyncErrors(async (req, res, next) => {
+export const allOrders = catchAsyncErrors(async (req, res, next) => {
     const orders = await Order.find()
 
     let totalAmount = 0;
@@ -84,7 +81,7 @@ exports.allOrders = catchAsyncErrors(async (req, res, next) => {
 
 //Update /Process order - admin => /api/v1/admin/order/:id
 
-exports.updateOrderStatus = catchAsyncErrors(async (req, res, next) => {
+export const updateOrder = catchAsyncErrors(async (req, res, next) => {
     const order = await Order.findById(req.params.id)
 
     if (!order) {
@@ -136,7 +133,7 @@ async function updateStock(id, quantity) {
 
 // delete order  => /api/v1/admin/order/:id
 
-exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
+export const deleteOrder = catchAsyncErrors(async (req, res, next) => {
     const order = await Order.findById(req.params.id).populate('user', 'name email')
 
     if (!order) {
@@ -220,7 +217,7 @@ function getDatesBetween(startDate, endDate) {
 }
 
 // Get Sales Data  =>  /api/v1/admin/get_sales
-exports.getSales = catchAsyncErrors(async (req, res, next) => {
+export const getSales = catchAsyncErrors(async (req, res, next) => {
     const startDate = new Date(req.query.startDate);
     const endDate = new Date(req.query.endDate);
 

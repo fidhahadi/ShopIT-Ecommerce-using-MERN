@@ -1,12 +1,11 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
 
-const { stripeCheckoutSession,
-    stripeWebhook } = require('../controllers/paymentController');
-
-
-const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth')
-
+import { isAuthenticatedUser } from "../middlewares/auth.js";
+import {
+    stripeCheckoutSession,
+    stripeWebhook,
+} from "../controllers/paymentControllers.js";
 
 router.route('/payment/checkout_session').post(isAuthenticatedUser, stripeCheckoutSession);
 
@@ -16,4 +15,4 @@ router.route('/payment/webhook').post(stripeWebhook);
 
 
 
-module.exports = router;
+export default router;

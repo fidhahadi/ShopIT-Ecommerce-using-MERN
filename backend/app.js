@@ -1,9 +1,14 @@
-const express = require("express");
+import express from "express";
 const app = express();
-const dotenv = require('dotenv');
-const cookieParser = require('cookie-parser');
-const connectDatabase = require('./config/database')
-const errorMiddleware = require('./middlewares/errors')
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+import { connectDatabase } from "./config/database.js";
+import errorMiddleware from "./middlewares/errors.js";
+
+import path from "path";
+// import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Handle Uncaught exceptions
 process.on("uncaughtException", (err) => {
@@ -12,30 +17,42 @@ process.on("uncaughtException", (err) => {
     process.exit(1);
 });
 
-dotenv.config({ path: "backend/config/config.env" });
+if (process.env.NODE_ENV !== "PRODUCTION") {
+    dotenv.config({ path: "backend/config/config.env" });
+}
 
 // Connecting to database
 connectDatabase();
 
-app.use(express.json({
-    limit: "10mb",
-    verify:
-        (req, res, buf) => {
-            req.rawBody = buf.toString()
+app.use(
+    express.json({
+        limit: "10mb",
+        verify: (req, res, buf) => {
+            req.rawBody = buf.toString();
         },
-}));
+    })
+);
 app.use(cookieParser());
 
-const products = require('./routes/product');
-const auth = require('./routes/auth');
-const order = require('./routes/order');
-const payment = require('./routes/payment');
+// Import all routes
+import productRoutes from "./routes/products.js";
+import authRoutes from "./routes/auth.js";
+import orderRoutes from "./routes/order.js";
+import paymentRoutes from "./routes/payment.js";
+import { fileURLToPath } from "url";
 
+app.use("/api/v1", productRoutes);
+app.use("/api/v1", authRoutes);
+app.use("/api/v1", orderRoutes);
+app.use("/api/v1", paymentRoutes);
 
-app.use("/api/v1", products);
-app.use("/api/v1", auth);
-app.use("/api/v1", order);
-app.use("/api/v1", payment);
+if (process.env.NODE_ENV === "PRODUCTION") {
+    app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+    });
+}
 
 // Using error middleware
 app.use(errorMiddleware);
@@ -45,6 +62,7 @@ const server = app.listen(process.env.PORT, () => {
         `Server started on PORT: ${process.env.PORT} in ${process.env.NODE_ENV} mode.`
     );
 });
+
 //Handle Unhandled Promise rejections
 process.on("unhandledRejection", (err) => {
     console.log(`ERROR: ${err}`);

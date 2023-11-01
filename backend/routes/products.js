@@ -1,23 +1,20 @@
-const express = require('express');
-const router = express.Router();
-
-
-const {
+import express from "express";
+import {
+    canUserReview,
+    createProductReview,
+    deleteProduct,
+    deleteProductImage,
+    deleteReview,
+    getAdminProducts,
+    getProductDetails,
+    getProductReviews,
     getProducts,
     newProduct,
-    getProductDetails,
     updateProduct,
-    deleteProduct,
-    createProductReview,
-    getProductReviews,
-    deleteReview,
-    canUserReview,
-    getAdminProducts,
     uploadProductImages,
-    deleteProductImage
-} = require('../controllers/productController')
-
-const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
+} from "../controllers/productControllers.js";
+import { authorizeRoles, isAuthenticatedUser } from "../middlewares/auth.js";
+const router = express.Router();
 
 router.route("/products").get(getProducts);
 router
@@ -63,5 +60,4 @@ router
     .get(isAuthenticatedUser, canUserReview);
 
 
-
-module.exports = router;
+export default router;

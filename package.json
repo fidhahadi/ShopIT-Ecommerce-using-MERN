@@ -1,5 +1,6 @@
 {
   "name": "shopit-ecommerce",
+  "type": "module",
   "version": "1.0.0",
   "description": "fullstack ecommerce site using mern",
   "main": "app.js",

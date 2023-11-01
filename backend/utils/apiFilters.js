@@ -41,4 +41,5 @@ class APIFilters {
         return this;
     }
 }
-module.exports = APIFilters
+
+export default APIFilters;

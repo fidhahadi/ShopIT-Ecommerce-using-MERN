@@ -1,12 +1,12 @@
-const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
+import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
+import Order from "../models/order.js";
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
-const Order = require("../models/order");
+import Stripe from "stripe";
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 //Create stripe checkout session = >  /api/v1/payment/checkout_session
 
-exports.stripeCheckoutSession = catchAsyncErrors(
+export const stripeCheckoutSession = catchAsyncErrors(
     async (req, res, next) => {
         const body = req?.body;
 
@@ -81,7 +81,7 @@ const getOrderItems = async (line_items) => {
 
 
 //Create a new order after payment  => /api/v1/payment/webhook
-exports.stripeWebhook = catchAsyncErrors(async (req, res, next) => {
+export const stripeWebhook = catchAsyncErrors(async (req, res, next) => {
     try {
         const signature = req.headers["stripe-signature"];
 
